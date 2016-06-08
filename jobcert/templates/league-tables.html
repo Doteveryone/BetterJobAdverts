@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+  <section class="row">
+    <div class="large-8 columns">
+      <h2>League tables</h2>
+      <p class="lead">
+        Some blurb goes here
+      </p>
+    </div>
+  </section>
+  <section class="row collapse">
+    <table class="large-8 columns">
+      <caption>Job boards</caption>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Uses jobPosting</th>
+          <th>Exact locations</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="supported">
+          <td><a href="http://www.w4mp.org">W4MP</a></td>
+          <td>Yes</td>
+          <td>No</td>
+        </tr>
+        <tr class="supported">
+          <td><a href="http://www.retailchoice.com">Retail Choice</a></td>
+          <td>Yes</td>
+          <td>Yes</td>
+        </tr>
+        <tr>
+          <td><a href="http://www.totaljobs.com/">Total Jobs</a></td>
+          <td>Yes</td>
+          <td>Yes</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+{% endblock %}

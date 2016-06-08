@@ -1,0 +1,90 @@
+@import '_settings.scss';
+@import 'foundation';
+@include foundation-everything;
+
+a {
+  text-decoration:underline;
+}
+
+nav {
+    line-height:0;
+    a {
+      text-decoration:none;
+      font-weight:$global-weight-bold;
+    }
+}
+
+header {
+  background-color:$primary-color;
+  padding-top:$global-padding * 0.75;
+  margin-bottom:$global-padding;
+  color:$white;
+  h1 {
+    padding-bottom:$global-padding / 3;
+    a, a:hover {
+      color:$white;
+      text-decoration:none;
+    }
+    small.status {
+      background:$white;
+      color:$primary-color;
+      text-transform:uppercase;
+      font-size: 10px;
+      padding:1px 4px;
+      position: relative;
+      top:-14px;
+      left:-3px;
+    }
+  }
+}
+
+.menu {
+  background:$primary-color;
+  li a {
+    color:$white;
+    padding-bottom:$global-padding / 2;
+  }
+  li.active a {
+    background:$white;
+    color:$primary-color;
+  }
+}
+
+table {
+  caption {
+    text-align:left;
+    font-size:20px;
+    @include breakpoint(medium) {
+      font-size:28px;
+    }
+  }
+  thead {
+    th {
+      vertical-align: middle;  
+    }
+  }
+}
+
+p.lead {
+  font-weight: 500;
+}
+
+a.button, button.button, input.button {
+   font-weight:bold;
+   text-decoration: none;
+}
+
+main {
+  min-height:400px;
+  margin-bottom: 4rem;
+}
+
+footer {
+  font-size:$small-font-size;
+  position:fixed;
+  bottom:0;
+  padding-top:$global-padding * 2;
+  padding-bottom:$global-padding / 2;
+  background-color:$white;
+  color:$dark-gray;
+}

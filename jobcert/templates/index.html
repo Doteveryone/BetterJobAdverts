@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+  <section class="row">
+    <div class="columns">
+      <p class="lead">
+        Blurb
+      </p>
+    </div>
+  </section>
+  <section class="row">
+    <div class="columns">
+      <h2>Check an existing advert</h2>
+      <form method="get" action="{{url_for('validate_jobposting')}}">
+        <div class="input-group">
+          <input name="url" type="url" placeholder="http://" class="input-group-field" />
+          <div class="input-group-button">
+            <button type="submit" class="button">Go</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
+  <section class="row">
+    <div class="columns">
+      <h2>Check html</h2>
+      <form method="post" action="{{url_for('validate_jobposting')}}">
+        <textarea name="html" rows="4"></textarea>
+        <button type="submit" class="button expanded">Go</button>
+      </form>
+    </div>
+  </section>
+{% endblock %}

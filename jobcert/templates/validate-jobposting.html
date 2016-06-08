@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% block content %}
+  <section class="row">
+    <div class="large-12 columns">
+      <ul class="no-bullet">
+
+        {# jobPosting schema #}
+        {% if parser.get_result('valid-jobposting')['result'] == True %}
+          <li class="callout success">
+            <h5>jobPosting schema</h5>
+            This advert uses the jobPosting schema. This is good because ...
+          </li>
+        {% else %}
+          <li class="callout alert">
+              <h5>jobPosting schema</h5>
+              This advert does not use the jobPosting schema. This is bad because ...
+          </li>
+        {% endif %}
+
+        {# Licensing #}
+        {% if parser.get_result('creative-commons-licence')['result'] %}  
+          <li class="callout success">
+            <h5>Licence to reuse</h5>
+            This job advert appears to be licensed under a Creative Commons licence. This is good because ... 
+          </li>
+        {% else %}
+          <li class="callout alert">
+            <h5>Licence to reuse</h5>
+            This job advert does not appear to have a Creative Commons licence associated with it.  This is bad because ...
+          </li>
+        {% endif %}
+
+
+        {# Readability #}
+        {% if parser.get_result('valid-jobposting')['result'] %}
+          {% if parser.get_result('valid-jobposting')['result'] < 49 %}
+            <li class="callout alert">
+              <h5>Readability</h5>
+              The language in the description is 
+              {% if parser.get_result('valid-jobposting')['result'] <= 29 %}
+                very confusing to read.
+              {% else %}
+                difficult to read
+              {% endif %}
+              This is bad because ... Here's what you can do about it.
+            </li>
+          {% elif parser.get_result('valid-jobposting')['result'] < 69 %}
+            <li class="callout warning">
+              <h5>Readability</h5>
+              The language in the description is
+              {% if parser.get_result('valid-jobposting')['result'] <= 59 %}
+                fairly difficult to read.
+              {% else %}
+                about standard.
+              {% endif %}
+              This is bad because ... Here's what you can do about it.
+            </li> 
+          {% else %}
+            <li class="callout success">
+              <h5>Readability</h5>
+              The language in the description is easy, fairly easy or very easy to read.
+            </li> 
+          {% endif %}
+          
+        {% else %}
+          <li class="callout secondary">
+            <h5>Readability</h5>
+            Sorry, it was not possible to calculate a readability score because the description was too short.
+          </li>
+        {% endif %}
+
+
+      </ul>
+    </div>
+  </section>
+{% endblock %}

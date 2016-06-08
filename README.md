@@ -1,3 +1,20 @@
+
+
+
+
+
+
+
+
+Run tests
+==============================
+source bin/activate
+python tests.py
+
+
+
+
+
 schema.org JobPosting standard
 ==============================
 
@@ -23,3 +40,9 @@ Article about US military using the standard
 ## ASA Rules on job adverts
 
 * https://www.asa.org.uk/%20News-resources/Hot-Topics/~/media/Files/ASA/Hot%20Topics/%20Employment%20opportunities%20-%20Hot%20topic.ashx
+
+
+
+RDFa example: http://www.retailchoice.com/JobSearch/JobDetails.aspx?JobId=65667908
+
+Micro data example: http://www.w4mpjobs.org/JobDetails.aspx?jobid=56149

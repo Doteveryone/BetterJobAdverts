@@ -1,0 +1,30 @@
+  Software Engineer
+  Software Engineer
+    Location: 
+    Kirkland WA
+  Industry: Computer Software
+  Occupational Category: 15-1132.00 Software Developers, Application
+  Hours: Full-time, 40 hours per week
+  Salary: USD 100000
+    Description: ABC Company Inc.
+    seeks a full-time mid-level software engineer to develop in-house tools.
+  Responsibilities:
+    Design and write specifications for tools for in-house customers
+    Build tools according to specifications
+  Educational requirements:
+    Bachelor's Degree in Computer Science, Information Systems or related fields of study.
+  Experience requirements:
+   Minumum 3 years experience as a software engineer
+  Desired Skills:
+    Web application development using Java/J2EE
+    Web application development using Python or familiarity with dynamic programming languages
+  Qualifications:
+    Ability to work in a team environment with members of varying skill levels.
+    Highly motivated.
+    Learns quickly.
+  Benefits:
+    ABC Corp provides top-tier employee compensation benefits and a relaxed, team-oriented work environment, including: Medical, Life, Dental
+      Incentives:
+        Performance-based annual bonus plan, project-completion bonuses
+  If interested in this position, please email us your resume, along with salary requirements and a cover letter to Jobs@abc.123.
+  Date Posted: 2011-10-31
