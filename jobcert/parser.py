@@ -6,6 +6,10 @@ class Parser():
     description = None
     results = []
 
+    # @staticmethod
+    # def parse_description(data):
+    #     description = data_soup.find(attrs={"data-foo": "value"})
+
     @staticmethod
     def check_creative_commons_licence(data):
         licences = []
@@ -52,6 +56,7 @@ class Parser():
 
         # Look for any of the 3 types of JobPosting markups
         job_posting_found = []
+
         # Case 1: Microdata
         job_posting_found.append(
             soup.findAll('div', {'itemtype' : 'http://schema.org/JobPosting'})

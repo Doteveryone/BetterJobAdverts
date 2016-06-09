@@ -16,6 +16,7 @@ def validate_jobposting():
         html = request.values['html']
 
     if request.method == 'GET':
+        url = request.values['url']
         html = requests.get(url, verify=False).content
 
     #parse

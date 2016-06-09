@@ -5373,23 +5373,28 @@ nav a {
   font-weight: bold;
 }
 
-/* line 17, ../../assets/sass/main.scss */
+/* line 18, ../../assets/sass/main.scss */
+dl dt {
+  margin-top: 1rem;
+}
+
+/* line 23, ../../assets/sass/main.scss */
 header {
   background-color: #f44241;
   padding-top: 0.75rem;
   margin-bottom: 1rem;
   color: #fefefe;
 }
-/* line 22, ../../assets/sass/main.scss */
+/* line 28, ../../assets/sass/main.scss */
 header h1 {
   padding-bottom: 0.33333rem;
 }
-/* line 24, ../../assets/sass/main.scss */
+/* line 30, ../../assets/sass/main.scss */
 header h1 a, header h1 a:hover {
   color: #fefefe;
   text-decoration: none;
 }
-/* line 28, ../../assets/sass/main.scss */
+/* line 34, ../../assets/sass/main.scss */
 header h1 small.status {
   background: #fefefe;
   color: #f44241;
@@ -5401,55 +5406,55 @@ header h1 small.status {
   left: -3px;
 }
 
-/* line 41, ../../assets/sass/main.scss */
+/* line 47, ../../assets/sass/main.scss */
 .menu {
   background: #f44241;
 }
-/* line 43, ../../assets/sass/main.scss */
+/* line 49, ../../assets/sass/main.scss */
 .menu li a {
   color: #fefefe;
   padding-bottom: 0.5rem;
 }
-/* line 47, ../../assets/sass/main.scss */
+/* line 53, ../../assets/sass/main.scss */
 .menu li.active a {
   background: #fefefe;
   color: #f44241;
 }
 
-/* line 54, ../../assets/sass/main.scss */
+/* line 60, ../../assets/sass/main.scss */
 table caption {
   text-align: left;
   font-size: 20px;
 }
 @media screen and (min-width: 40em) {
-  /* line 54, ../../assets/sass/main.scss */
+  /* line 60, ../../assets/sass/main.scss */
   table caption {
     font-size: 28px;
   }
 }
-/* line 62, ../../assets/sass/main.scss */
+/* line 68, ../../assets/sass/main.scss */
 table thead th {
   vertical-align: middle;
 }
 
-/* line 68, ../../assets/sass/main.scss */
+/* line 74, ../../assets/sass/main.scss */
 p.lead {
   font-weight: 500;
 }
 
-/* line 72, ../../assets/sass/main.scss */
+/* line 78, ../../assets/sass/main.scss */
 a.button, button.button, input.button {
   font-weight: bold;
   text-decoration: none;
 }
 
-/* line 77, ../../assets/sass/main.scss */
+/* line 83, ../../assets/sass/main.scss */
 main {
   min-height: 400px;
-  margin-bottom: 4rem;
+  padding-bottom: 200px;
 }
 
-/* line 82, ../../assets/sass/main.scss */
+/* line 88, ../../assets/sass/main.scss */
 footer {
   font-size: 80%;
   position: fixed;

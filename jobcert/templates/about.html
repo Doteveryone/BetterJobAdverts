@@ -2,29 +2,45 @@
 {% block content %}
   <section class="row">
     <div class="columns">
-        <h2>About this site</h2>
+        <h2>Better Job Adverts</h2>
 
-        <p class="lead">Job hunters want great services to find jobs - ones that
-        list every job there is, with accurate up to date details, and
-        alerts when new ones appear.</p>
-
-        <p>Unfortunately, this isn't possible because employers and job sites publish
-        very low quality job adverts. Salaries, geographical location, skills needed
-        are unclear and inconsistent. They can't be easily reused by other sites
-        and apps.</p>
-
-        <p>There is an international standard (called <a href="https://schema.org/JobPosting">
-          schema.org JobPosting</a>) for publishing job adverts with proper
-        data. Open Jobs checks a jobs website to see if it is using that standard. We
-        award Gold, Silver and Bronze grades to sites which pass.
+        <p class="lead">
+            We can use technology and open standards to make the job market better in the UK.
         </p>
-
-        <h3>Readability</h3>
-        <a href="https://en.wikipedia.org/wiki/Flesch–Kincaid_readability_tests">
-            Flesch–Kincaid readability tests
-        </a>
-        This is important because ...
-
+        <h3>What's are the problems?</h3>
+        <ul>
+          <li>
+            <a href="https://blogs.citizensadvice.org.uk/blog/job-adverts-how-getting-the-small-details-right-can-lead-to-big-successes/">Citizens Advice research</a> has shown that job adverts in the UK are very poor quality. Information like salaries, geographical location, skills needed are unclear and inconsistent.
+          </li>
+          <li>
+            There is <a href="http://gender-decoder.katmatfield.com/about">some evidence</a> that 'gender coded language' in job adverts may influence if applicants feel they 'belonged' in that occupation.
+          </li>
+          <li>
+            <a href="http://www.publications.parliament.uk/pa/cm200809/cmselect/cmpubacc/154/154.pdf">Half of the UK working population have a reading age of 11-years-old or younger</a>. Badly written or hard to understand job adverts make it harder for people to apply for them.
+          </li>
+          <li>Unclear copyright status of job adverts and lack of structured data stifles reuse and innovation.</li>
+        </ul>
+        <h3>What does Better Job Adverts check for?</h3>
+        <dl>
+          <dt>The schema.org jobPosting standard</dt>
+          <dd>
+            The <a href="http://schema.org/JobPosting">jobPosting</a> standard can help solve some of the issues about poor quality job adverts by helping publishers to include structured information about things like pay and location. It also make it easier for search engines to find jobs.
+          </dd>
+          <dt>Gender coded language</dt>
+          <dd>
+            The job description is checked against a list of 'gender coded' words from <a href="http://gender-decoder.katmatfield.com">Gender Decoder for Job Ads</a>.
+          </dd>
+          <dt>Readability</dt>
+          <dd>
+            The job description is checked against the <a href="https://en.wikipedia.org/wiki/Flesch–Kincaid_readability_tests">
+            Flesch–Kincaid readability test.
+            </a>
+          </dd>
+          <dt>Open licences</dt>
+          <dd>
+            The advert is checked for evidence that it has been licensed under a <a href="https://creativecommons.org/licenses/">Creative Commons licence</a> that makes it clear how and where the advert may be republished.
+          </dd>
+        </dl>
     </div>
   </section>
 {% endblock %}
