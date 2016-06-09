@@ -10,9 +10,10 @@
 * Screen reader check
 * Automated accessibility check
 * HTML validator on all pages
-* Add acknowledgements
 * Add link to report bugs
 * Store results in database and link up to league table
+* Link to opendiversity
+* Link to diversity charter
 
 Done:
 * Check for open licence on jobs data
@@ -22,3 +23,4 @@ Done:
 * About page v1
 * Add link to github
 * CSS rules for non mobile browsers
+* Add acknowledgements
