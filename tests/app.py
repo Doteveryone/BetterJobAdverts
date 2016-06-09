@@ -14,12 +14,12 @@ class TestApp(unittest.TestCase):
     def test_about(self):
         rv = self.app.get('/about')
         assert rv.status == '200 OK'
-        assert 'About this site' in rv.data
+        assert 'Better Job Adverts' in rv.data
 
     def test_league_tables(self):
         rv = self.app.get('/league-tables')
         assert rv.status == '200 OK'
-        assert 'League tables' in rv.data
+        assert 'League table' in rv.data
 
     # def test_validate_jobposting_valid(self):
     #     url = 'http://www.w4mpjobs.org/JobDetails.aspx?jobid=56127'
