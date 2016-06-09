@@ -79,6 +79,10 @@ def league_tables():
 def about():
     return render_template('about.html', menu_item="about")
 
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('404.html'), 404
+    
 # @app.route('/tests/<path:path>')
 # def tests(path):
 #     root_dir = os.path.dirname(os.path.abspath(__file__)) 

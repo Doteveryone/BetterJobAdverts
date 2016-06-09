@@ -7,3 +7,5 @@
 
 Done:
 * Check for open licence on jobs data
+* Heroku
+* Travis
