@@ -82,13 +82,11 @@ a.button, button.button, input.button {
 
 main {
   min-height:400px;
-  padding-bottom: 200px;
+  padding-bottom: 2rem;
 }
 
 footer {
   font-size:$small-font-size;
-  position:fixed;
-  bottom:0;
   padding-top:$global-padding * 2;
   padding-bottom:$global-padding / 2;
   background-color:$white;

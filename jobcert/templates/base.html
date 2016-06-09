@@ -19,7 +19,7 @@
   {% endwith %}
 
   <header role="banner"  class="row">
-    <div class="small-12 columns">
+    <div class="small-12 large-8 large-offset-2 columns">
       <h1>
         <a href="{{url_for('index')}}">Better Job Adverts</a>
         <small class="status"><span>Alpha</span></small>
@@ -30,7 +30,7 @@
             <a href="{{url_for('index')}}">Tools</a>
           </li>
           <li{% if menu_item == 'league-tables'%} class="active"{% endif %}>
-            <a href="{{url_for('league_tables')}}">League tables</a>
+            <a href="{{url_for('league_tables')}}">League table</a>
           </li>
           <li{% if menu_item == 'about'%} class="active"{% endif %}>
             <a href="{{url_for('about')}}">About</a>
@@ -49,7 +49,7 @@
       </a>
     </div>
     <div class="columns small-8">
-      This is a project of <a href="https://doteveryone.org.uk">Doteveryone</a> The code is available under a <a rel="license" href="http://www.gnu.org/licenses/agpl-3.0.en.html">GNU Affero General Public License</a> and content is reusable under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International licence</a>.
+      This is a project of <a href="https://doteveryone.org.uk">Doteveryone</a> The <a href="https://github.com/Doteveryone/BetterJobAdverts">code</a> is available under a <a rel="license" href="http://www.gnu.org/licenses/agpl-3.0.en.html">GNU Affero General Public License</a> and content is reusable under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International licence</a>.
     </div>
   </footer>
 </body>

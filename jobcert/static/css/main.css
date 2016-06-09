@@ -5451,14 +5451,12 @@ a.button, button.button, input.button {
 /* line 83, ../../assets/sass/main.scss */
 main {
   min-height: 400px;
-  padding-bottom: 200px;
+  padding-bottom: 2rem;
 }
 
 /* line 88, ../../assets/sass/main.scss */
 footer {
   font-size: 80%;
-  position: fixed;
-  bottom: 0;
   padding-top: 2rem;
   padding-bottom: 0.5rem;
   background-color: #fefefe;
