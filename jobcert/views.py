@@ -11,61 +11,28 @@ from parser import Parser
 def validate_jobposting():
 
     #get html
+    error = False
     html = None
     if request.method == 'POST':
         html = request.values['html']
 
     if request.method == 'GET':
         url = request.values['url']
-        html = requests.get(url, verify=False).content
+        try:
+            html = requests.get(url, verify=False).content
+        except requests.exceptions.ConnectionError:
+            error = "Sorry, that URL does not exist"
+        except requests.exceptions.HTTPError:
+            error = "Sorry, something went wrong"
+        except requests.exceptions.Timeout:
+            error = "Sorry, there was a timeout when trying to visit that URL"
 
     #parse
     parser = Parser()
-    parser.parse(html)
+    if error == False:
+        parser.parse(html)
 
-    # result = None
-    # status_code = 200
-    # url = request.values['url']
-    # job_postings = []
-
-    # try:
-    #     content = requests.get(url, verify=False).content
-    #     soup = BeautifulSoup(content, "html.parser")
-     
-    #     # Look for any of the 3 types of JobPosting markups
-
-    #     # Case 1: Microdata
-    #     job_postings.extend(job_posting.from_microdata(content))
-
-    #     # Case 2: RDFa
-    #     job_postings.extend(job_posting.from_RDFa(content))
-
-    #     # Case 3: JSON-LD
-    #     job_postings.extend(job_posting.from_RDFa(content))
-    #     ld_jsons = soup.findAll('script', {
-    #         'type' : 'application/ld+json',
-    #     })
-
-    #     for ld in ld_jsons:
-    #         print ld
-    #         ld_json = json.loads(ld.string)
-    #         # item = ld_json.get("@type", '') == "JobPosting"
-    #         item = ld_json.get("@type", 'JobPosting')
-    #         job_postings.append({'jobposting':item, 'format': 'ld-json'})
-
-    #     if any(job_postings):
-    #         result = 'passed'
-    #     else:
-    #         result = 'failed'
-
-    # except requests.exceptions.MissingSchema:
-    #     status_code = 400
-    #     result = 'invalid url'
-    # except requests.exceptions.ConnectionError:
-    #     status_code = 400
-    #     result = 'unable to reach url'
-
-    return render_template('validate-jobposting.html', menu_item="index", parser=parser)
+    return render_template('validate-jobposting.html', menu_item="index", parser=parser, error=error)
 
 @app.route('/')
 def index():

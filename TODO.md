@@ -1,21 +1,23 @@
-* Add location check
+* Check if salary contains numbers ('you could improve this advert by...')
+* Check if location has latlng
+* Check is location has address
+* Add contract type check
+* Focus on jobPosting on the results page (create other information section)
 * Store results in database and link up to league table
-* Handle invalid URL
-* Style result boxes
-* Add link to table to explain how calculated
-* Add link to report bugs
-* Add recommendations for publishers to about page??
-* make python 3
+* Make rdfa work
+* Make json-ld work
 
 Before making public:
 
+* API
+* make python 3
 * Screen reader check
 * Automated accessibility check
 * HTML validator on all pages
-
-
+* Handle invalid URL
 
 Done:
+* Add location check
 * Readability score should use description only, not entire document
 * Add a gender check
 * Parse title and job description

@@ -1,99 +1,105 @@
 {% extends "base.html" %}
 {% block content %}
-  <section class="row">
-    <div class="columns medium-8 large-8 large-offset-2">
-      <ul class="no-bullet">
-        {# jobPosting schema #}
-        {% if parser.get_result('valid-jobposting')['result'] == True %}
-          <li class="callout success">
-            <h5>jobPosting schema</h5>
-            This advert uses the jobPosting schema. This is good because ...
-          </li>
-        {% else %}
-          <li class="callout alert">
+  {% if error %}
+      <section class="row">
+        <div class="columns medium-8 large-8 large-offset-2">
+          <p>{{error}}</p>
+        </div>
+      </section>
+  {% else %}
+    <section class="row">
+      <div class="columns medium-8 large-8 large-offset-2">
+        <ul class="no-bullet">
+          {# jobPosting schema #}
+          {% if parser.get_result('valid-jobposting')['result'] == True %}
+            <li class="callout success">
               <h5>jobPosting schema</h5>
-              This advert does not use the jobPosting schema. This is bad because ...
-          </li>
-        {% endif %}
-
-        {# Licensing #}
-        {% if parser.get_result('creative-commons-licence')['result'] %}  
-          <li class="callout success">
-            <h5>Licence to reuse</h5>
-            This job advert appears to be licensed under a Creative Commons licence. This is good because ... 
-          </li>
-        {% else %}
-          <li class="callout alert">
-            <h5>Licence to reuse</h5>
-            This job advert does not appear to have a Creative Commons licence associated with it.  This is bad because ...
-          </li>
-        {% endif %}
-
-        {# Salary #}
-        {% if parser.get_result('has-salary')['result'] %}  
-          <li class="callout success">
-            <h5>Clear salary information</h5>
-            This job advert has clear information about the salary an applicant can expect. This is good because ... 
-          </li>
-        {% else %}
-          <li class="callout alert">
-            <h5>Clear salary information</h5>
-            This job advert does not appear to have clear information about the salary an applicant can expect.  This is bad because ...
-          </li>
-        {% endif %}
-
-        {# Gender-coded language #}
-        {% if parser.get_result('gender-coded-language')['result'] %}
-          <li class="callout {% if parser.get_result('gender-coded-language')['result'] in ['feminine-coded', 'strongly feminine-coded', 'neutral'] %} success{% else %} alert {% endif %}">
-            <h5>Gender-coded language</h5>
-            {{parser.get_result('gender-coded-language')['explanation']}}
-          </li>
-        {% endif %}
-
-        {# Readability #}
-        {{parser.get_result('flesch-reading-ease')['result']}}
-        {% if parser.get_result('flesch-reading-ease')['result'] %}
-          {% if parser.get_result('flesch-reading-ease')['result'] < 49 %}
-            <li class="callout alert">
-              <h5>Readability</h5>
-              The language in the description is {% if parser.get_result('flesch-reading-ease')['result'] <= 29 %}very confusing to read.{% else %}difficult to read{% endif %}
-              This is bad because ... Here's what you can do about it.
-            </li>
-          {% elif parser.get_result('flesch-reading-ease')['result'] < 69 %}
-            <li class="callout warning">
-              <h5>Readability</h5>
-              The language in the description is {% if parser.get_result('flesch-reading-ease')['result'] <= 59 %}fairly difficult to read.{% else %}about standard.{% endif %}
-              This is bad because ... Here's what you can do about it.
+              This advert uses the jobPosting schema. This is good because ...
             </li>
           {% else %}
-            <li class="callout success">
-              <h5>Readability</h5>
-              The language in the description is easy, fairly easy or very easy to read.
-            </li> 
+            <li class="callout alert">
+                <h5>jobPosting schema</h5>
+                This advert does not use the jobPosting schema. This is bad because ...
+            </li>
           {% endif %}
-          
-        {% else %}
-          <li class="callout secondary">
-            <h5>Readability</h5>
-            Sorry, it was not possible to calculate a readability score because the description was too short.
-          </li>
-        {% endif %}
 
-        {# Open diversity #}
-        <li class="callout secondary">
-          <h5>Diversity</h5>
-          <ul>
-            <li>
-              <a href="http://opendiversitydata.org">Check if a link to this employer is listed at opendiversitydata.org</a>
+          {# Licensing #}
+          {% if parser.get_result('creative-commons-licence')['result'] %}  
+            <li class="callout success">
+              <h5>Licence to reuse</h5>
+              This job advert appears to be licensed under a Creative Commons licence. This is good because ... 
             </li>
-            <li>
-              <a href="http://diversitycharter.org">Check if people from this organisation have signed the diversitycharter.org</a>
+          {% else %}
+            <li class="callout alert">
+              <h5>Licence to reuse</h5>
+              This job advert does not appear to have a Creative Commons licence associated with it.  This is bad because ...
             </li>
-          </ul>  
-          <p>(Sorry, it was not possible to check this automatically)</p>
-        </li>
+          {% endif %}
 
-      </ul>
-    </div>
-  </section>
+          {# Salary #}
+          {% if parser.get_result('has-salary')['result'] %}  
+            <li class="callout success">
+              <h5>Clear salary information</h5>
+              This job advert has clear information about the salary an applicant can expect. This is good because ... 
+            </li>
+          {% else %}
+            <li class="callout alert">
+              <h5>Clear salary information</h5>
+              This job advert does not appear to have clear information about the salary an applicant can expect.  This is bad because ...
+            </li>
+          {% endif %}
+
+          {# Salary #}
+          {% if parser.get_result('has-location')['result'] %}  
+            <li class="callout success">
+              <h5>Clear location information</h5>
+              This job advert has clear information about the location an applicant can expect to work. This is good because ... 
+            </li>
+          {% else %}
+            <li class="callout alert">
+              <h5>Clear salary information</h5>
+              This job advert does not appear to have clear information about the location an applicant can expect to work.  This is bad because ...
+            </li>
+          {% endif %}
+
+          {# Gender-coded language #}
+          {% if parser.get_result('gender-coded-language')['result'] %}
+            <li class="callout {% if parser.get_result('gender-coded-language')['result'] in ['feminine-coded', 'strongly feminine-coded', 'neutral'] %} success{% else %} alert {% endif %}">
+              <h5>Gender-coded language</h5>
+              {{parser.get_result('gender-coded-language')['explanation']}}
+            </li>
+          {% endif %}
+
+          {# Readability #}
+          {% if parser.get_result('flesch-reading-ease')['result'] %}
+            {% if parser.get_result('flesch-reading-ease')['result'] < 49 %}
+              <li class="callout alert">
+                <h5>Readability</h5>
+                The language in the description is {% if parser.get_result('flesch-reading-ease')['result'] <= 29 %}very confusing to read.{% else %}difficult to read{% endif %}
+                This is bad because ... Here's what you can do about it.
+              </li>
+            {% elif parser.get_result('flesch-reading-ease')['result'] < 69 %}
+              <li class="callout warning">
+                <h5>Readability</h5>
+                The language in the description is {% if parser.get_result('flesch-reading-ease')['result'] <= 59 %}fairly difficult to read.{% else %}about standard.{% endif %}
+                This is bad because ... Here's what you can do about it.
+              </li>
+            {% else %}
+              <li class="callout success">
+                <h5>Readability</h5>
+                The language in the description is easy, fairly easy or very easy to read.
+              </li> 
+            {% endif %}
+            
+          {% else %}
+            <li class="callout secondary">
+              <h5>Readability</h5>
+              Sorry, it was not possible to calculate a readability score because the description was too short.
+            </li>
+          {% endif %}
+
+        </ul>
+      </div>
+    </section>
+  {% endif %}
 {% endblock %}

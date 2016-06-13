@@ -5,10 +5,11 @@ import genderdecoder
 
 class JobAdvert():
     title = None
+    salary = None
     description = None
+    location = None
     publishing_format = None
     creative_commons_licences = []
-    salary = None
 
     def to_text(self):
         return "%s" % (self.description)
@@ -118,10 +119,21 @@ class Parser():
             salary_currency_element = job_advert.find(attrs={"itemprop": "salaryCurrency"})
             base_salary_element = job_advert.find(attrs={"itemprop": "baseSalary"})
 
+            salary = ""
             if salary_currency_element:
-                self.job_advert.salary = salary_currency_element.text
+                salary = salary_currency_element.text
             if base_salary_element:
-                self.job_advert.salary = self.job_advert.salary + " %s" %base_salary_element.text
+                if salary != "":
+                    salary = "%s %s" % (salary, base_salary_element.text)
+                else:
+                    salary = base_salary_element.text
+            self.job_advert.salary = salary
+
+            #location
+            location_element = job_advert.find(attrs={"itemprop": "jobLocation"})
+
+            if location_element:                
+                self.job_advert.location = location_element.text.strip()
 
         return success
 
@@ -168,6 +180,15 @@ class Parser():
           {
             'name': 'has-salary',
             'result': self.job_advert.salary != None,
+            'explanation': '',
+          }
+        )
+
+        #Location
+        self.results.append(
+          {
+            'name': 'has-location',
+            'result': self.job_advert.location != None,
             'explanation': '',
           }
         )

@@ -48,6 +48,13 @@ class TestParserMicrodata(unittest.TestCase):
 
         assert parser.get_result('has-salary')['result'] == True
 
+    def test_location(self):
+        parser = Parser()
+        parser.parse(read_test_case('schemaorg-microdata.html'))
+        assert parser.job_advert.location == 'Kirkland WA'
+
+        assert parser.get_result('has-location')['result'] == True
+
 class TestParserSchema(unittest.TestCase):
 
     def test_valid_jobPosting_microdata(self):
