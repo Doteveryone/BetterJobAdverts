@@ -12,4 +12,4 @@ app.config.from_object(os.environ.get('SETTINGS', 'config.DevelopmentConfig'))
 # db.create_all()
 
 import views
-import models
+# import models
