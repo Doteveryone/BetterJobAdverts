@@ -1,6 +1,13 @@
 import unittest
 from jobcert import app
 import os
+from nose.tools import nottest
+
+@nottest
+def read_test_case(filename):
+    root_dir = os.path.dirname(os.path.abspath(__file__))
+    test_file = os.path.join(root_dir, '../jobcert', 'data', 'test-cases', filename)
+    return file(test_file).read()
 
 class TestApp(unittest.TestCase):
 
@@ -20,6 +27,35 @@ class TestApp(unittest.TestCase):
         rv = self.app.get('/league-tables')
         assert rv.status == '200 OK'
         assert 'League table' in rv.data
+
+    def test_salary(self):
+        data = {'html': read_test_case('schemaorg-microdata.html')}
+        rv = self.app.post('/validate-jobposting', data=data)
+        assert rv.status == '200 OK'
+        assert 'This job advert has clear information about the salary an applicant can expect' in rv.data
+
+    def test_gender_coded_words(self):
+
+        data = {'html': read_test_case('schemaorg-microdata.html')}
+        rv = self.app.post('/validate-jobposting', data=data)
+        assert rv.status == '200 OK'
+        assert "This job ad doesn&#39;t use any words that are stereotypically masculine and stereotypically feminine. It probably won&#39;t be off-putting to men or women applicants." in rv.data
+
+    def test_gender_coded_words(self):
+
+        data = {'html': read_test_case('schemaorg-microdata.html')}
+        rv = self.app.post('/validate-jobposting', data=data)
+        assert rv.status == '200 OK'
+        assert "This job ad doesn&#39;t use any words that are stereotypically masculine and stereotypically feminine. It probably won&#39;t be off-putting to men or women applicants." in rv.data
+
+    def test_readability(self):
+
+        data = {'html': read_test_case('schemaorg-microdata.html')}
+        rv = self.app.post('/validate-jobposting', data=data)
+        assert rv.status == '200 OK'
+        print rv.data
+        assert "The language in the description is difficult to read" in rv.data
+
 
     # def test_validate_jobposting_valid(self):
     #     url = 'http://www.w4mpjobs.org/JobDetails.aspx?jobid=56127'

@@ -4,6 +4,8 @@ decorator==4.0.4
 Flask==0.10.1
 Flask-API==0.6.4
 Flask-Cors==2.1.2
+Flask-SQLAlchemy==2.1
+genderdecoder==0.3
 gnureadline==6.3.3
 gunicorn==19.3.0
 html5lib==0.9999999
@@ -22,6 +24,7 @@ PyLD==0.7.1
 requests==2.8.1
 simplegeneric==0.8.1
 six==1.10.0
+SQLAlchemy==1.0.13
 textstat==0.2
 traitlets==4.0.0
 Werkzeug==0.10.4

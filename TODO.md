@@ -1,21 +1,24 @@
-
-* Handle invalid URL
 * Add location check
-* Add salary check
+* Store results in database and link up to league table
+* Handle invalid URL
 * Style result boxes
-* Readability score should use description only, not entire document
-* handle multiple jobs on page??
 * Add link to table to explain how calculated
+* Add link to report bugs
+* Add recommendations for publishers to about page??
 * make python 3
+
+Before making public:
+
 * Screen reader check
 * Automated accessibility check
 * HTML validator on all pages
-* Add link to report bugs
-* Store results in database and link up to league table
-* Link to opendiversity
-* Link to diversity charter
+
+
 
 Done:
+* Readability score should use description only, not entire document
+* Add a gender check
+* Parse title and job description
 * Check for open licence on jobs data
 * Heroku
 * Travis
@@ -24,3 +27,7 @@ Done:
 * Add link to github
 * CSS rules for non mobile browsers
 * Add acknowledgements
+* Link to opendiversity
+* Link to diversity charter
+* Create a package for genderdecoder
+* Add salary check

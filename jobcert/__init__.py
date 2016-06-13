@@ -4,16 +4,12 @@ from flask import Flask
 from flask.ext.cors import CORS
 from flask.ext.api import renderers
 from flask.ext.api import FlaskAPI
+from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
-# CORS(app)
-
-# class CORSRenderer(renderers.JSONRenderer):
-#     def render(self, data, media_type, **options):
-#         options['headers'].append('')
-#         return super().render(data, media_type, **options)
+app.config.from_object(os.environ.get('SETTINGS', 'config.DevelopmentConfig'))
+# db = SQLAlchemy(app)
+# db.create_all()
 
 import views
-
-# if __name__ == "__main__":
-#     app.run(debug=True)
+import models
