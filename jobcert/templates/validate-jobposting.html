@@ -1,11 +1,18 @@
 {% extends "base.html" %}
 {% block content %}
+  <section class="row">
+    <div class="product-message columns medium-8 large-8 large-offset-2">
+      <p>
+        <strong>Feedback:</strong> help us improve this service by <a href="https://github.com/Doteveryone/BetterJobAdverts/issues">reporting any bugs or suggestions</a>
+      </p>
+    </div>
+  </section>
   {% if error %}
-      <section class="row">
-        <div class="columns medium-8 large-8 large-offset-2">
-          <p>{{error}}</p>
-        </div>
-      </section>
+    <section class="row">
+      <div class="columns medium-8 large-8 large-offset-2">
+        <p>{{error}}</p>
+      </div>
+    </section>
   {% else %}
     <section class="row">
       <div class="columns medium-8 large-8 large-offset-2">
@@ -37,15 +44,20 @@
           {% endif %}
 
           {# Salary #}
-          {% if parser.get_result('has-salary')['result'] %}  
+          {% if parser.get_result('salary-clarity')['result'] == 'clear' %}  
             <li class="callout success">
               <h5>Clear salary information</h5>
               This job advert has clear information about the salary an applicant can expect. This is good because ... 
             </li>
+          {% elif parser.get_result('salary-clarity')['result'] == 'unclear' %}  
+            <li class="callout warning">
+              <h5>Clear salary information</h5>
+              This job advert does not appears to include some information about salary, but not a monetary amount. This is bad because ...
+            </li>
           {% else %}
             <li class="callout alert">
               <h5>Clear salary information</h5>
-              This job advert does not appear to have clear information about the salary an applicant can expect.  This is bad because ...
+              This job advert does not appear to have any information about the salary an applicant can expect.  This is bad because ...
             </li>
           {% endif %}
 

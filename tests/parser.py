@@ -46,7 +46,22 @@ class TestParserMicrodata(unittest.TestCase):
         parser.parse(read_test_case('schemaorg-microdata.html'))
         assert parser.job_advert.salary == u'USD 100000'
 
-        assert parser.get_result('has-salary')['result'] == True
+        assert parser.get_result('salary-clarity')['result'] == 'clear'
+
+    def test_salary_clear(self):
+        parser = Parser()
+        parser.parse(read_test_case('salary-clear.html'))
+        assert parser.get_result('salary-clarity')['result'] == 'clear'
+
+    def test_salary_unclear(self):
+        parser = Parser()
+        parser.parse(read_test_case('salary-unclear.html'))
+        assert parser.get_result('salary-clarity')['result'] == 'unclear'
+
+    def test_salary_missing(self):
+        parser = Parser()
+        parser.parse(read_test_case('salary-missing.html'))
+        assert parser.get_result('salary-clarity')['result'] == 'missing'
 
     def test_location(self):
         parser = Parser()

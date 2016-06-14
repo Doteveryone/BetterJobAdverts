@@ -1,7 +1,11 @@
-import json
 from bs4 import BeautifulSoup
 from textstat.textstat import textstat
 import genderdecoder
+import re
+import json
+
+def contains_numbers(data):
+    return bool(re.search(r'\d', data))
 
 class JobAdvert():
     title = None
@@ -146,8 +150,7 @@ class Parser():
     def _parse_html(self, data):
         return False
 
-    def _analyse(self):
-
+    def _analyse_format(self):
         #is jobPosting?
         self.results.append(
           {
@@ -157,38 +160,13 @@ class Parser():
           }
         )
 
+    def _analyse_text(self):
+
         #How easy is the description to read?
         self.results.append(
           {
             'name': 'flesch-reading-ease',
             'result': self.calculate_flesch_reading_ease(self.job_advert.to_text()),
-            'explanation': '',
-          }
-        )
-
-        #Is there a creative commons licence?
-        self.results.append(
-          {
-            'name': 'creative-commons-licence',
-            'result': len(self.job_advert.creative_commons_licences) > 0,
-            'explanation': '',
-          }
-        )
-
-        #Is the salary clear?
-        self.results.append(
-          {
-            'name': 'has-salary',
-            'result': self.job_advert.salary != None,
-            'explanation': '',
-          }
-        )
-
-        #Location
-        self.results.append(
-          {
-            'name': 'has-location',
-            'result': self.job_advert.location != None,
             'explanation': '',
           }
         )
@@ -202,6 +180,59 @@ class Parser():
             'explanation': gender_coded_result['explanation'],
           }
         )
+
+    def _analyse_licence(self):
+        #Is there a creative commons licence?
+        self.results.append(
+          {
+            'name': 'creative-commons-licence',
+            'result': len(self.job_advert.creative_commons_licences) > 0,
+            'explanation': '',
+          }
+        )
+
+    def _analyse_salary(self):
+        #Is the salary clear?
+        if self.job_advert.salary:
+            if contains_numbers(self.job_advert.salary):
+                salary_result = {
+                    'name': 'salary-clarity',
+                    'result': 'clear',
+                    'explanation': '',
+                }
+            else:
+                salary_result = {
+                    'name': 'salary-clarity',
+                    'result': 'unclear',
+                    'explanation': '',
+                }
+        else:
+            salary_result = {
+                'name': 'salary-clarity',
+                'result': 'missing',
+                'explanation': '',
+            }
+
+        self.results.append(salary_result)
+
+    def _analyse_location(self):
+
+        #Location
+        self.results.append(
+          {
+            'name': 'has-location',
+            'result': self.job_advert.location != None,
+            'explanation': '',
+          }
+        )
+
+    def analyse(self):
+
+        self._analyse_format()
+        self._analyse_text()
+        self._analyse_licence()
+        self._analyse_location()
+        self._analyse_salary()
 
     def parse(self, data):
         self.job_advert = JobAdvert()
@@ -220,7 +251,7 @@ class Parser():
         self._parse_creative_commons_licence(data)        
 
         #analyse
-        self._analyse()
+        self.analyse()
 
 
 

@@ -5406,55 +5406,64 @@ header h1 small.product-status {
   left: -3px;
 }
 
-/* line 47, ../../assets/sass/main.scss */
+/* line 48, ../../assets/sass/main.scss */
+.product-message p {
+  font-size: 80%;
+  color: #8a8a8a;
+  border-bottom: solid 1px #cacaca;
+  padding-bottom: 0.5rem;
+  padding-top: 0;
+}
+
+/* line 57, ../../assets/sass/main.scss */
 .menu {
   background: #f44241;
 }
-/* line 49, ../../assets/sass/main.scss */
+/* line 59, ../../assets/sass/main.scss */
 .menu li a {
   color: #fefefe;
   padding-bottom: 0.5rem;
 }
-/* line 53, ../../assets/sass/main.scss */
+/* line 63, ../../assets/sass/main.scss */
 .menu li.active a {
   background: #fefefe;
   color: #f44241;
 }
 
-/* line 60, ../../assets/sass/main.scss */
+/* line 70, ../../assets/sass/main.scss */
 table caption {
   text-align: left;
   font-size: 20px;
 }
 @media screen and (min-width: 40em) {
-  /* line 60, ../../assets/sass/main.scss */
+  /* line 70, ../../assets/sass/main.scss */
   table caption {
     font-size: 28px;
   }
 }
-/* line 68, ../../assets/sass/main.scss */
+/* line 78, ../../assets/sass/main.scss */
 table thead th {
   vertical-align: middle;
 }
 
-/* line 74, ../../assets/sass/main.scss */
+/* line 84, ../../assets/sass/main.scss */
 p.lead {
   font-weight: 500;
 }
 
-/* line 78, ../../assets/sass/main.scss */
+/* line 88, ../../assets/sass/main.scss */
 a.button, button.button, input.button {
   font-weight: bold;
   text-decoration: none;
 }
 
-/* line 83, ../../assets/sass/main.scss */
+/* line 93, ../../assets/sass/main.scss */
 main {
   min-height: 400px;
   padding-bottom: 2rem;
 }
 
-/* line 88, ../../assets/sass/main.scss */
+/* line 98, ../../assets/sass/main.scss */
 footer {
   font-size: 80%;
   padding-top: 2rem;

@@ -44,6 +44,16 @@ header {
   }
 }
 
+.product-message {
+  p{
+    font-size:$small-font-size;
+    color:$dark-gray;
+    border-bottom:solid 1px $medium-gray;
+    padding-bottom:$global-padding / 2;
+    padding-top:0;
+  }
+}
+
 .menu {
   background:$primary-color;
   li a {

@@ -1,4 +1,4 @@
-* Check if salary contains numbers ('you could improve this advert by...')
+
 * Check if location has latlng
 * Check is location has address
 * Add contract type check
@@ -6,6 +6,9 @@
 * Store results in database and link up to league table
 * Make rdfa work
 * Make json-ld work
+* API
+* Change creative commons to 'clear licensing'
+* Add feedback link to results page
 
 Before making public:
 
@@ -17,6 +20,7 @@ Before making public:
 * Handle invalid URL
 
 Done:
+* Check if salary contains numbers ('you could improve this advert by...')
 * Add location check
 * Readability score should use description only, not entire document
 * Add a gender check

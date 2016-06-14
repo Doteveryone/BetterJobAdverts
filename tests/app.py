@@ -53,7 +53,6 @@ class TestApp(unittest.TestCase):
         data = {'html': read_test_case('schemaorg-microdata.html')}
         rv = self.app.post('/validate-jobposting', data=data)
         assert rv.status == '200 OK'
-        print rv.data
         assert "The language in the description is difficult to read" in rv.data
 
 

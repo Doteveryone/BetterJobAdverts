@@ -31,6 +31,7 @@ def validate_jobposting():
     parser = Parser()
     if error == False:
         parser.parse(html)
+        parser.analyse()
 
     return render_template('validate-jobposting.html', menu_item="index", parser=parser, error=error)
 
