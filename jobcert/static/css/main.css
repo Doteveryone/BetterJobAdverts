@@ -3198,7 +3198,7 @@ select[multiple] {
 .callout {
   margin: 0 0 1rem 0;
   padding: 1rem;
-  border: 1px solid rgba(10, 10, 10, 0.25);
+  border: none;
   border-radius: 0;
   position: relative;
   color: #0a0a0a;
@@ -5464,6 +5464,24 @@ main {
 }
 
 /* line 98, ../../assets/sass/main.scss */
+.callout.alert {
+  background: #fefefe;
+  border-left: solid 10px #ec5840;
+}
+
+/* line 103, ../../assets/sass/main.scss */
+.callout.success {
+  background: #fefefe;
+  border-left: solid 10px #3adb76;
+}
+
+/* line 108, ../../assets/sass/main.scss */
+.callout.warning {
+  background: #fefefe;
+  border-left: solid 10px #ffae00;
+}
+
+/* line 113, ../../assets/sass/main.scss */
 footer {
   font-size: 80%;
   padding-top: 2rem;

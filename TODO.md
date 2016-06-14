@@ -1,4 +1,3 @@
-
 * Check if location has latlng
 * Check is location has address
 * Add contract type check
@@ -8,7 +7,7 @@
 * Make json-ld work
 * API
 * Change creative commons to 'clear licensing'
-* Add feedback link to results page
+
 
 Before making public:
 
@@ -17,9 +16,11 @@ Before making public:
 * Screen reader check
 * Automated accessibility check
 * HTML validator on all pages
-* Handle invalid URL
+
 
 Done:
+* Handle invalid URL
+* Add feedback link to results page
 * Check if salary contains numbers ('you could improve this advert by...')
 * Add location check
 * Readability score should use description only, not entire document

@@ -6,4 +6,5 @@ include
 lib
 man
 pip-selfcheck.json
-.sass-cache/
+.sass-cache
+jobcert/assets/.sass-cache

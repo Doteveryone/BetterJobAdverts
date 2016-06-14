@@ -95,6 +95,21 @@ main {
   padding-bottom: 2rem;
 }
 
+.callout.alert {
+  background:$callout-background;
+  border-left:solid 10px $alert-color;
+}
+
+.callout.success {
+  background:$callout-background;
+  border-left:solid 10px $success-color;
+}
+
+.callout.warning {
+  background:$callout-background;
+  border-left:solid 10px $warning-color;
+}
+
 footer {
   font-size:$small-font-size;
   padding-top:$global-padding * 2;
