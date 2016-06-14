@@ -70,6 +70,18 @@ class TestParserMicrodata(unittest.TestCase):
 
         assert parser.get_result('has-location')['result'] == True
 
+    def test_employment_type(self):
+        parser = Parser()
+        parser.parse(read_test_case('schemaorg-microdata.html'))
+        assert parser.job_advert.employment_type == 'Full-time'
+
+        assert parser.get_result('has-employment-type')['result'] == True
+
+    def test_employment_type_missing(self):
+        parser = Parser()
+        parser.parse(read_test_case('employment-type-missing.html'))
+        assert parser.get_result('has-employment-type')['result'] == False
+
 class TestParserSchema(unittest.TestCase):
 
     def test_valid_jobPosting_microdata(self):

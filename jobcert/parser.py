@@ -12,6 +12,7 @@ class JobAdvert():
     salary = None
     description = None
     location = None
+    employment_type = None
     publishing_format = None
     creative_commons_licences = []
 
@@ -135,11 +136,16 @@ class Parser():
 
             #location
             location_element = job_advert.find(attrs={"itemprop": "jobLocation"})
-
             if location_element:                
                 self.job_advert.location = location_element.text.strip()
+            
+            #Employment type
+            employment_type_element = job_advert.find(attrs={"itemprop": "employmentType"})
+            if employment_type_element:
+                self.job_advert.employment_type = employment_type_element.text.strip()
 
         return success
+
 
     def _parse_rdfa(self, data):
         return False
@@ -217,11 +223,20 @@ class Parser():
 
     def _analyse_location(self):
 
-        #Location
         self.results.append(
           {
             'name': 'has-location',
             'result': self.job_advert.location != None,
+            'explanation': '',
+          }
+        )
+
+    def _analyse_employment_type(self):
+
+        self.results.append(
+          {
+            'name': 'has-employment-type',
+            'result': self.job_advert.employment_type != None,
             'explanation': '',
           }
         )
@@ -233,6 +248,7 @@ class Parser():
         self._analyse_licence()
         self._analyse_location()
         self._analyse_salary()
+        self._analyse_employment_type()
 
     def parse(self, data):
         self.job_advert = JobAdvert()
