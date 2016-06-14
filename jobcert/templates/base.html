@@ -30,10 +30,13 @@
             <a href="{{url_for('index')}}">Tools</a>
           </li>
           <li{% if menu_item == 'league-tables'%} class="active"{% endif %}>
-            <a href="{{url_for('league_tables')}}">League table</a>
+            <a href="{{url_for('league_tables')}}">Data</a>
+          </li>
+          <li{% if menu_item == 'api'%} class="active"{% endif %}>
+            <a href="{{url_for('api')}}">API</a>
           </li>
           <li{% if menu_item == 'about'%} class="active"{% endif %}>
-            <a href="{{url_for('about')}}">About</a>
+            <a href="{{url_for('about')}}">Report</a>
           </li>
         </ul>
       </nav>

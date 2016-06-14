@@ -24,34 +24,47 @@ class TestApp(unittest.TestCase):
         assert 'Better Job Adverts' in rv.data
 
     def test_league_tables(self):
-        rv = self.app.get('/league-tables')
+        rv = self.app.get('/data')
         assert rv.status == '200 OK'
         assert 'League table' in rv.data
 
     def test_salary(self):
         data = {'html': read_test_case('schemaorg-microdata.html')}
-        rv = self.app.post('/validate-jobposting', data=data)
+        rv = self.app.post('/check', data=data)
         assert rv.status == '200 OK'
         assert 'This job advert has clear information about the salary an applicant can expect' in rv.data
+
+    def test_salary(self):
+        data = {'html': read_test_case('schemaorg-microdata.html')}
+        rv = self.app.post('/check', data=data)
+        assert rv.status == '200 OK'
+        assert 'This job advert has clear information about the salary an applicant can expect' in rv.data
+
+    def test_location(self):
+        data = {'html': read_test_case('schemaorg-microdata.html')}
+        rv = self.app.post('/check', data=data)
+        assert rv.status == '200 OK'
+        assert 'This job advert has unclear information about the location of the employment' in rv.data
+
 
     def test_gender_coded_words(self):
 
         data = {'html': read_test_case('schemaorg-microdata.html')}
-        rv = self.app.post('/validate-jobposting', data=data)
+        rv = self.app.post('/check', data=data)
         assert rv.status == '200 OK'
         assert "This job ad doesn&#39;t use any words that are stereotypically masculine and stereotypically feminine. It probably won&#39;t be off-putting to men or women applicants." in rv.data
 
     def test_gender_coded_words(self):
 
         data = {'html': read_test_case('schemaorg-microdata.html')}
-        rv = self.app.post('/validate-jobposting', data=data)
+        rv = self.app.post('/check', data=data)
         assert rv.status == '200 OK'
         assert "This job ad doesn&#39;t use any words that are stereotypically masculine and stereotypically feminine. It probably won&#39;t be off-putting to men or women applicants." in rv.data
 
     def test_readability(self):
 
         data = {'html': read_test_case('schemaorg-microdata.html')}
-        rv = self.app.post('/validate-jobposting', data=data)
+        rv = self.app.post('/check', data=data)
         assert rv.status == '200 OK'
         assert "Difficult" in rv.data
 

@@ -63,12 +63,26 @@ class TestParserMicrodata(unittest.TestCase):
         parser.parse(read_test_case('salary-missing.html'))
         assert parser.get_result('salary-clarity')['result'] == 'missing'
 
-    def test_location(self):
+    def test_location_unclear(self):
         parser = Parser()
-        parser.parse(read_test_case('schemaorg-microdata.html'))
-        assert parser.job_advert.location == 'Kirkland WA'
+        parser.parse(read_test_case('schemaorg-microdata.html')) 
+        assert parser.job_advert.address == 'Kirkland WA'
 
-        assert parser.get_result('has-location')['result'] == True
+        assert parser.get_result('location-clarity')['result'] == 'unclear'
+
+    def test_location_clear(self):
+        parser = Parser()
+        parser.parse(read_test_case('location-clear-microdata.html')) 
+        assert parser.job_advert.address == 'Somerset House, Strand, London WC2R 1LA'
+
+        assert parser.get_result('location-clarity')['result'] == 'clear'
+
+    def test_location_missing(self):
+        parser = Parser()
+        parser.parse(read_test_case('location-missing-microdata.html')) 
+        assert parser.job_advert.address == None
+
+        assert parser.get_result('location-clarity')['result'] == 'missing'
 
     def test_employment_type(self):
         parser = Parser()

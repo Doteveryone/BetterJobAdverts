@@ -1,9 +1,11 @@
+aniso8601==1.1.0
 appnope==0.1.0
 beautifulsoup4==4.4.1
 decorator==4.0.4
 Flask==0.10.1
 Flask-API==0.6.4
 Flask-Cors==2.1.2
+Flask-RESTful==0.3.5
 Flask-SQLAlchemy==2.1
 genderdecoder==0.3
 gnureadline==6.3.3
@@ -22,6 +24,8 @@ pexpect==4.0.1
 pickleshare==0.5
 ptyprocess==0.5
 PyLD==0.7.1
+python-dateutil==2.5.3
+pytz==2016.4
 requests==2.8.1
 simplegeneric==0.8.1
 six==1.10.0

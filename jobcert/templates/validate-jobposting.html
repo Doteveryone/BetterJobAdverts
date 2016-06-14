@@ -16,6 +16,7 @@
   {% else %}
     <section class="row">
       <div class="columns medium-8 large-8 large-offset-2">
+        <h2>Results for an advert for <em>'{{parser.job_advert.title}}'</em>{% if url%} at <em>{{url|urlize(40, true)}}</em>{% endif %}</h2>
         <ul class="no-bullet">
           {# jobPosting schema #}
           {% if parser.get_result('valid-jobposting')['result'] == True %}
@@ -50,7 +51,10 @@
           {% if parser.get_result('salary-clarity')['result'] == 'clear' %}  
             <li class="callout success">
               <h5>Salary information</h5>
-              <div class="stat">Yes</div>
+              <p class="stat">Yes</p>
+              <p>
+                <code>{{parser.job_advert.salary}}</code>
+              </p>
               This job advert has clear information about the salary an applicant can expect. This is good because ... 
             </li>
           {% elif parser.get_result('salary-clarity')['result'] == 'unclear' %}
@@ -67,17 +71,44 @@
             </li>
           {% endif %}
 
+          {# Employment type#}
+          {% if parser.get_result('has-employment-type')['result'] %}  
+            <li class="callout success">
+              <h5>Employment type information</h5>
+              <div class="stat">Yes</div>
+              This job advert has clear information about the type of employment. This is good because ... 
+            </li>
+          {% else %}
+            <li class="callout alert">
+              <h5>Employment type information</h5>
+              <div class="stat">Missing</div>
+              This job advert does not have clear information about the type of employment. This is bad because ...
+            </li>
+          {% endif %}
+
           {# Location #}
-          {% if parser.get_result('has-location')['result'] %}  
+          {% if parser.get_result('location-clarity')['result'] == 'clear' %}
             <li class="callout success">
               <h5>Location information</h5>
-              <div class="stat">Yes</div>
-              This job advert has clear information about the location an applicant can expect to work. This is good because ... 
+              <p class="stat">Clear</p>
+              <p>
+                <code>{{parser.job_advert.address}}</code>
+              </p>
+              This job advert has clear information about the location of the employment. This is good because ... 
+            </li>
+          {% elif parser.get_result('location-clarity')['result'] == 'unclear' %}
+            <li class="callout warning">
+              <h5>Location information</h5>
+              <p class="stat">Unclear</p>
+              <p>
+                <code>{{parser.job_advert.address}}</code>
+              </p>
+              This job advert has unclear information about the location of the employment. This is bad because ...
             </li>
           {% else %}
             <li class="callout alert">
               <h5>Location information</h5>
-              <div class="stat">No</div>
+              <p class="stat">Missing</>
               This job advert does not appear to have clear information about the location an applicant can expect to work.  This is bad because ...
             </li>
           {% endif %}

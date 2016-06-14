@@ -1,22 +1,32 @@
-* Check if location has latlng
-* Check is location has address
-* Add contract type check
-* Focus on jobPosting on the results page (create other information section)
+* Tests for API
+* Database connection
+* Include parsed data in results
+* Write copy for jobposting results
+* Write copy for licensing results
+* Write copy for salary results
+* Write copy for employment type results
+* Write copy for locaiton information results
+* Write copy for gender-coded language results
+* Write copy for readability results
 * Store results in database and link up to league table
 * Make rdfa work
 * Make json-ld work
 * API
-* Change creative commons to 'clear licensing'
-
+* Handle employment type being specified elsewhere in the text?
 
 Before making public:
-
+* Add contract type check
 * API
 * make python 3
 * Screen reader check
 * Automated accessibility check
 * HTML validator on all pages
+* Results for ...
+* Check if location has latlng
+* Check is location has postcode
 
+Future:
+* Get better at spotting full addresses (currently looking for full UK postcode)
 
 Done:
 * Handle invalid URL

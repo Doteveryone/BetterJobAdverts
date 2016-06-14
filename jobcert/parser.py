@@ -4,6 +4,26 @@ import genderdecoder
 import re
 import json
 
+def contains_postcode(data):
+
+    data = data.replace(' ', '')
+
+    inward = 'ABDEFGHJLNPQRSTUWXYZ'
+    fst = 'ABCDEFGHIJKLMNOPRSTUWYZ'
+    sec = 'ABCDEFGHKLMNOPQRSTUVWXY'
+    thd = 'ABCDEFGHJKSTUW'
+    fth = 'ABEHMNPRVWXY'
+
+    if re.search('[%s][1-9]\d[%s][%s]$' % (fst, inward, inward), data) or \
+        re.search('[%s][1-9]\d\d[%s][%s]$' % (fst, inward, inward), data) or \
+        re.search('[%s][%s]\d\d[%s][%s]$' % (fst, sec, inward, inward), data) or \
+        re.search('[%s][%s][1-9]\d\d[%s][%s]$' % (fst, sec, inward, inward), data) or \
+        re.search('[%s][1-9][%s]\d[%s][%s]$' % (fst, thd, inward, inward), data) or \
+        re.search('[%s][%s][1-9][%s]\d[%s][%s]$' % (fst, sec, fth, inward, inward), data):
+        return True
+
+    return False
+
 def contains_numbers(data):
     return bool(re.search(r'\d', data))
 
@@ -11,13 +31,25 @@ class JobAdvert():
     title = None
     salary = None
     description = None
-    location = None
+    address = None
+    latlng = None
     employment_type = None
     publishing_format = None
     creative_commons_licences = []
 
     def to_text(self):
         return "%s" % (self.description)
+
+    def to_dict(self):
+        return {
+            'title': self.title,
+            'salary': self.salary,
+            'description': self.description,
+            'address': self.address,
+            'employment_type': self.employment_type,
+            'publishing_format': self.publishing_format,
+            'creative_commons_licences': self.creative_commons_licences,
+        }
 
 class Parser():
 
@@ -136,16 +168,27 @@ class Parser():
 
             #location
             location_element = job_advert.find(attrs={"itemprop": "jobLocation"})
-            if location_element:                
-                self.job_advert.location = location_element.text.strip()
-            
+            if location_element:
+                address_element = location_element.find(attrs={"itemprop": "PostalAddress"})
+                latitude_element = location_element.find(attrs={"itemprop": "latitude"})
+                longitude_element = location_element.find(attrs={"itemprop": "longitude"})
+
+                #address (if no address, just assume the whole contents)
+                if address_element:
+                    self.job_advert.address = address_element.text.strip()
+                else:
+                    self.job_advert.address = location_element.text.strip()
+
+                #latlng
+                if address_element and longitude_element:
+                    self.latlng = [latitude_element.text, longitude_element.text]
+
             #Employment type
             employment_type_element = job_advert.find(attrs={"itemprop": "employmentType"})
             if employment_type_element:
                 self.job_advert.employment_type = employment_type_element.text.strip()
 
         return success
-
 
     def _parse_rdfa(self, data):
         return False
@@ -222,14 +265,31 @@ class Parser():
         self.results.append(salary_result)
 
     def _analyse_location(self):
-
-        self.results.append(
-          {
-            'name': 'has-location',
-            'result': self.job_advert.location != None,
-            'explanation': '',
-          }
-        )
+        if self.job_advert.address:
+            if contains_postcode(self.job_advert.address):
+                self.results.append(
+                  {
+                    'name': 'location-clarity',
+                    'result': 'clear',
+                    'explanation': '',
+                  }
+                )
+            else:
+                self.results.append(
+                  {
+                    'name': 'location-clarity',
+                    'result': 'unclear',
+                    'explanation': '',
+                  }
+                )
+        else:
+            self.results.append(
+              {
+                'name': 'location-clarity',
+                'result': 'missing',
+                'explanation': '',
+              }
+            )
 
     def _analyse_employment_type(self):
 

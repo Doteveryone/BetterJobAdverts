@@ -7,12 +7,13 @@ from jobcert import app
 import job_posting
 from parser import Parser
 
-@app.route('/validate-jobposting', methods=['GET', 'POST'])
+@app.route('/check', methods=['GET', 'POST'])
 def validate_jobposting():
 
     #get html
     error = False
     html = None
+    url = None
     if request.method == 'POST':
         html = request.values['html']
 
@@ -31,21 +32,24 @@ def validate_jobposting():
     parser = Parser()
     if error == False:
         parser.parse(html)
-        parser.analyse()
 
-    return render_template('validate-jobposting.html', menu_item="index", parser=parser, error=error)
+    return render_template('validate-jobposting.html', menu_item="index", parser=parser, error=error, url=url)
 
 @app.route('/')
 def index():
     return render_template('index.html', menu_item="index")
 
-@app.route('/league-tables')
+@app.route('/data')
 def league_tables():
     return render_template('league-tables.html', menu_item="league-tables")
 
 @app.route('/about')
 def about():
     return render_template('about.html', menu_item="about")
+
+@app.route('/api')
+def api():
+    return render_template('api.html', menu_item="api")
 
 @app.errorhandler(404)
 def page_not_found(e):

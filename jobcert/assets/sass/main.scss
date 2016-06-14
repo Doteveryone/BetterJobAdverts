@@ -20,6 +20,10 @@ dl {
   }
 }
 
+code.multiline {
+  display:block;
+}
+
 header {
   background-color:$primary-color;
   padding-top:$global-padding * 0.75;
