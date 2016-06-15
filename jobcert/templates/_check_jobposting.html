@@ -1,0 +1,117 @@
+{# Hours #}
+          <li class="callout {{parser.get_result('has-employment-type')['result']|boolean_status}}">
+            <h5>Working hours</h5>
+            {% if parser.get_result('has-employment-type')['result'] %}  
+              <div class="stat">Clear</div>
+              <code>{{parser.job_advert.employment_type}}</code>
+              <p>
+                This job advert indicates if the position is full-time or part-time. 
+            {% else %}
+              <div class="stat">Missing</div>
+              <p>
+                This job advert does not appear to indicate if the position is full-time or part-time.
+            {% endif %}
+              Clear information about working hours helps job seekers apply for the right sort of jobs and employers to hire the right people.
+            </p>
+          </li>
+
+          {# Location #}
+          <li class="callout {{parser.get_result('location-clarity')['result']|trafficlight_status}}">
+            <h5>Working location</h5>
+            {% if parser.get_result('location-clarity')['result'] == 'clear' %}
+              <p class="stat">Clear</p>
+              <code>{{parser.job_advert.address}}</code>
+              <p>
+                This job advert has clear information about the location of the employment.
+            {% elif parser.get_result('location-clarity')['result'] == 'unclear' %}
+              <p class="stat">Unclear</p>
+              <code>{{parser.job_advert.address}}</code>
+              <p>
+                This job advert appears to include some information about the location of the job, but it is unclear as it does not include a full address and postcode.
+            {% else %}
+              <p class="stat">Missing</>
+              <p>
+                This job advert does not have clear information about the location an applicant can expect to work.
+            {% endif %}
+                Clear information about working locations helps job seekers apply for the right sort of jobs and employers to hire the right people.
+            </p>
+          </li>
+
+          {# Salary #}
+          <li class="callout {{parser.get_result('salary-clarity')['result']|trafficlight_status}}">
+            <h5>Salary information</h5>
+            {% if parser.get_result('salary-clarity')['result'] == 'clear' %}     
+              <p class="stat">clear</p>
+              <code>{{parser.job_advert.salary}}</code>
+              <p>
+                This job advert has clear information about the salary an applicant can expect.
+            {% elif parser.get_result('salary-clarity')['result'] == 'unclear' %}
+              <div class="stat">Unclear</div>
+              <code>{{parser.job_advert.salary}}</code>
+              <p>
+                This job advert includes some information about salary, but does not appear to include a clear not a monetary amount or range.
+            {% else %}
+              <div class="stat">Missing</div>
+              <p>
+                This job advert does not appear to include any information about the 
+                salary an applicant can expect.
+            {% endif %}
+              Clear information about salary helps job seekers apply for the right sort of jobs and employers to hire the right people.
+            </p>
+          </li>
+
+          {# Licensing #}
+            <li class="callout {% if parser.get_result('creative-commons-licence')['result'] %}success{% else %}warning{% endif %}">
+              <h5>Reuse and licensing</h5>
+              {% if parser.get_result('creative-commons-licence')['result'] %}
+                <div class="stat">Clear</div>
+                <code>
+                  {% for licence in parser.job_advert.creative_commons_licences %}
+                    licence
+                  {% endfor %}
+                </code>
+                <p>
+                This job advert appears to be licensed under a Creative Commons licence.
+              {% else %}
+              <div class="stat">Unclear</div>
+              <p>
+                This job advert does not appear to have a Creative Commons licence associated with it.
+              {% endif %}
+                <a href="https://creativecommons.org/licenses/">Creative Commons licences</a> make it clear how content can be reused by others.
+              </p>
+            </li>
+
+          {# Gender-coded language #}
+          {% if parser.get_result('gender-coded-language')['result'] %}
+            <li class="callout {{parser.get_result('gender-coded-language')['result']|gender_coded_status}}">
+              <h5>Gender-coded language</h5>
+              <div class="stat">
+                {{parser.get_result('gender-coded-language')['result']|title}}
+              </div>
+              {{parser.get_result('gender-coded-language')['explanation']}}
+            </li>
+          {% else %}
+            <li class="callout secondary">
+              <h5>Gender-coded language</h5>
+              Sorry, it was not possible to check for gender-coded language because the description was too short.
+            </li>
+          {% endif %}
+
+          {# Readability #}
+          {% if parser.get_result('flesch-reading-ease')['result'] %}
+              <li class="callout {{parser.get_result('flesch-reading-ease')['result']|readability_status}}">
+                <h5>Readability</h5>
+                <div class="stat">{{parser.get_result('flesch-reading-ease')['result']|readability_words}}</div>
+                <code>
+                  Flesch–Kincaid score: {{parser.get_result('flesch-reading-ease')['result']}}
+                </code>
+                <p>
+                  According to the <a href="https://en.wikipedia.org/wiki/Flesch–Kincaid_readability_tests">Flesch–Kincaid readability test</a> the content of this job advert is '{{parser.get_result('flesch-reading-ease')['result']|readability_words}}'. 
+                </p>
+              </li>            
+          {% else %}
+            <li class="callout secondary">
+              <h5>Readability</h5>
+              Sorry, it was not possible to calculate a readability score because the description was too short.
+            </li>
+          {% endif %}

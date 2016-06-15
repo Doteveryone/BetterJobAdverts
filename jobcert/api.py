@@ -4,16 +4,16 @@ from parser import Parser
 import requests
 import json
 
-class Check(Resource):
+class CheckApi(Resource):
     def __init__(self):
         self.parser = reqparse.RequestParser()
-        super(Check, self).__init__()
+        super(CheckApi, self).__init__()
 
     def post (self):
         self.parser.add_argument('html', type=str, required=True, location=('json', 'values'), help="You must provide some HTML")
         args = self.parser.parse_args()
         parser = Parser()
-        parser.parse(html)
+        parser.parse(args['html'])
         return {
           'job_advert': parser.job_advert.to_dict(),
           'analysis': parser.results
@@ -41,4 +41,4 @@ class Check(Resource):
             error = "Sorry, there was a timeout when trying to visit that URL", 502
 
 
-api.add_resource(Check, '/api/check')
+api.add_resource(CheckApi, '/api/check')

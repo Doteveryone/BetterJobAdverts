@@ -18,6 +18,22 @@ def readability_words_filter(s):
     else:
         return "Very Confusing"
 
+@app.template_filter('trafficlight_status')
+def trafficlight_status_filter(s):
+    if s == 'clear':
+        return "success"
+    if s == 'unclear':
+        return "warning"        
+    else:
+        return "alert"
+
+@app.template_filter('boolean_status')
+def boolean_status_filter(s):
+    if bool(s):
+        return "success"
+    else:
+        return "alert"
+
 @app.template_filter('readability_status')
 def readability_status_filter(s):
     score = int(s)

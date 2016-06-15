@@ -7,8 +7,24 @@ from jobcert import app
 import job_posting
 from parser import Parser
 
+@app.route('/')
+def index():
+    return render_template('index.html', menu_item="tools")
+
+@app.route('/report')
+def report():
+    return render_template('report.html', menu_item="report")
+
+@app.route('/api')
+def api():
+    return render_template('api.html', menu_item="api")
+
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('404.html'), 404
+
 @app.route('/check', methods=['GET', 'POST'])
-def validate_jobposting():
+def check():
 
     #get html
     error = False
@@ -33,34 +49,4 @@ def validate_jobposting():
     if error == False:
         parser.parse(html)
 
-    return render_template('validate-jobposting.html', menu_item="index", parser=parser, error=error, url=url)
-
-@app.route('/')
-def index():
-    return render_template('index.html', menu_item="index")
-
-@app.route('/data')
-def league_tables():
-    return render_template('league-tables.html', menu_item="league-tables")
-
-@app.route('/about')
-def about():
-    return render_template('about.html', menu_item="about")
-
-@app.route('/api')
-def api():
-    return render_template('api.html', menu_item="api")
-
-@app.errorhandler(404)
-def page_not_found(e):
-    return render_template('404.html'), 404
-    
-# @app.route('/tests/<path:path>')
-# def tests(path):
-#     root_dir = os.path.dirname(os.path.abspath(__file__)) 
-#     return send_from_directory(os.path.join(root_dir, 'data', 'test-cases'), path)
-
-# @app.route('/<path:path>')
-# def home(path):
-#     return send_from_directory(os.path.abspath('templates'), path)
-
+    return render_template('check.html', menu_item="tools", parser=parser, error=error, url=url)

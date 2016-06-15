@@ -69,23 +69,6 @@ class TestApp(unittest.TestCase):
         assert "Difficult" in rv.data
 
 
-    # def test_validate_jobposting_valid(self):
-    #     url = 'http://www.w4mpjobs.org/JobDetails.aspx?jobid=56127'
-    #     rv = self.app.get('/validate-jobposting?url=%s' % url)
-    #     assert rv.status_code == 200
-    #     assert 'Valid' in rv.data
-
-    # def test_validate_jobposting_invalid(self):
-    #     url = 'http://google.com'
-    #     rv = self.app.get('/validate-jobposting?url=%s' % url)
-    #     assert rv.status_code == 200
-    #     assert 'Invalid' in rv.data
-
-    # def test_validate_jobposting_bad_url(self):
-    #     url = ''
-    #     rv = self.app.get('/validate-jobposting?url=%s' % url)
-    #     assert rv.status_code == 400
-    #     assert 'Invalid URL' in rv.data
-
+    
 # if __name__ == '__main__':
 #     unittest.main()

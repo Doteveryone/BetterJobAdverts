@@ -1,9 +1,11 @@
 {% extends "base.html" %}
 {% block content %}
   <section class="row">
-    <div class="columns medium-8 large-6 large-offset-2">
+    <div class="columns medium-8 large-6 large-offset-1">
         <h2>Better Job Adverts</h2>
-
+        <p class="lead">
+          Poor quality job adverts fail job hunters and employers. This tool scans a job adverts. It tells employers how to improve and job hunters what to look out for.
+        </p>
         <p class="lead">
             We can use technology and open standards to make the job market better in the UK.
         </p>
@@ -44,10 +46,38 @@
     </div>
   </section>
   <section class="row">
-    <div class="columns medium-8 large-6 large-offset-2">
+    <div class="columns medium-8 large-6 large-offset-1">
+      <h2>League table</h2>
+      <p class="lead">
+        This table shows a 3 month average scores reached by publishers of job adverts.
+      </p>
+    </div>
+  </section>
+  <section class="row collapse">
+    <table class="columns  large-6 large-offset-1">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th width="200">Average score</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="supported">
+          <td><a href="http://www.w4mp.org">W4MP</a></td>
+          <td>78%</td>
+        </tr>
+        <tr>
+          <td><a href="http://www.totaljobs.com/">Total Jobs</a></td>
+          <td>32%</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+  <section class="row">
+    <div class="columns medium-8 large-6 large-offset-1">
       <h2>Acknowledgements</h2>
       <p>
-        This is a fork of a project started by Sym Row, Francis Irving and Georgina Bourke at the Cabinet Office Job Hack event.
+        This is a fork of a project started by Sym Roe, Francis Irving and Georgina Bourke at the Cabinet Office Job Hack event.
       </p>
       <p>
         The gender-coded word calculator was originally a project of Kat Mayfield and is available as a <a href="http://gender-decoder.katmatfield.com">stand-alone service</a>.

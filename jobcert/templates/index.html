@@ -1,16 +1,9 @@
 {% extends "base.html" %}
 {% block content %}
   <section class="row">
-    <div class="columns medium-8 large-6 large-offset-2 ">
-      <p class="lead">
-        Poor quality job adverts fail job hunters and employers. This tool scans a job adverts. It tells employers how to improve and job hunters what to look out for.
-      </p>
-    </div>
-  </section>
-  <section class="row">
-    <div class="columns medium-8 large-6 large-offset-2">
+    <div class="columns medium-8 large-6 large-offset-1">
       <h2>Check an existing advert</h2>
-      <form method="get" action="{{url_for('validate_jobposting')}}">
+      <form method="get" action="{{url_for('check')}}">
         <div class="input-group">
           <input name="url" type="url" placeholder="http://" class="input-group-field" />
           <div class="input-group-button">
@@ -21,9 +14,9 @@
     </div>
   </section>
   <section class="row">
-    <div class="columns medium-8 large-6 large-offset-2">
+    <div class="columns medium-8 large-6 large-offset-1">
       <h2>Check HTML</h2>
-      <form method="post" action="{{url_for('validate_jobposting')}}">
+      <form method="post" action="{{url_for('check')}}">
         <textarea name="html" rows="4"></textarea>
         <button type="submit" class="button expanded">Go</button>
       </form>

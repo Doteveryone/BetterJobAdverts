@@ -6,13 +6,6 @@ a {
   text-decoration:underline;
 }
 
-nav {
-    line-height:0;
-    a {
-      text-decoration:none;
-      font-weight:$global-weight-bold;
-    }
-}
 
 dl {
   dt{
@@ -46,6 +39,24 @@ header {
       left:-3px;
     }
   }
+  .menu {
+    background:$primary-color;
+    li a {
+      color:$white;
+      padding-bottom:$global-padding / 2;
+    }
+    li.active a {
+      background:$white;
+      color:$primary-color;
+    }
+  }
+  nav {
+    line-height:0;
+    a {
+      text-decoration:none;
+      font-weight:$global-weight-bold;
+    }
+}
 }
 
 .product-message {
@@ -55,18 +66,6 @@ header {
     border-bottom:solid 1px $medium-gray;
     padding-bottom:$global-padding / 2;
     padding-top:0;
-  }
-}
-
-.menu {
-  background:$primary-color;
-  li a {
-    color:$white;
-    padding-bottom:$global-padding / 2;
-  }
-  li.active a {
-    background:$white;
-    color:$primary-color;
   }
 }
 
@@ -113,6 +112,10 @@ main {
   background:$callout-background;
   border-left:solid 10px $warning-color;
 }
+.callout.secondary {
+  background:$light-gray;
+  border-left:solid 10px $secondary-color;
+}
 
 footer {
   font-size:$small-font-size;
@@ -120,4 +123,8 @@ footer {
   padding-bottom:$global-padding / 2;
   background-color:$white;
   color:$dark-gray;
+}
+
+.tabs-content {
+  margin-bottom: $global-padding * 2;
 }

@@ -150,7 +150,8 @@ class Parser():
             #description
             description_element = job_advert.find(attrs={"itemprop": "description"})
             if description_element:
-                self.job_advert.description = description_element.text
+                self.job_advert.description = "\n".join(description_element.strings)
+                print self.job_advert.description
 
             #salary
             salary_currency_element = job_advert.find(attrs={"itemprop": "salaryCurrency"})
@@ -220,15 +221,24 @@ class Parser():
           }
         )
 
-        #Gender-coded language
-        gender_coded_result = genderdecoder.assess(self.job_advert.to_text())
-        self.results.append(
-          {
-            'name': 'gender-coded-language',
-            'result': gender_coded_result['result'],
-            'explanation': gender_coded_result['explanation'],
-          }
-        )
+        #Gender-coded language (if longer than 100 chars)
+        if len(self.job_advert.to_text()) > 100:
+            gender_coded_result = genderdecoder.assess(self.job_advert.to_text())
+            self.results.append(
+              {
+                'name': 'gender-coded-language',
+                'result': gender_coded_result['result'],
+                'explanation': gender_coded_result['explanation'],
+              }
+            )
+        else:
+            self.results.append(
+              {
+                'name': 'gender-coded-language',
+                'result': None,
+                'explanation': None,
+              }
+            )
 
     def _analyse_licence(self):
         #Is there a creative commons licence?
@@ -328,9 +338,5 @@ class Parser():
 
         #analyse
         self.analyse()
-
-
-
-
 
 

@@ -1,13 +1,86 @@
 {% extends "base.html" %}
 {% block content %}
   <section class="row">
-    <div class="columns">
+    <div class="columns medium-8 large-6 large-offset-1">
       <h2>API</h2>
-      {# <h3>Check a URL</h3>
-      <code class="multiline">
-        {{config['API_BASE_URL']}}/api/call?url=</strong><em>http://www.example.com</em>
-      </code>
-      <h4>Response</h4> #}
+      <p>You can also check job adverts pragmatically.</p>
+    </div>
+  </section>
+
+  {# Check a URL #}
+  <section class="row">
+    <div class="columns medium-8 large-6 large-offset-1">
+      <h3>Check a URL</h3>
+
+      <ul class="tabs" data-tabs id="url-examples">
+        <li class="tabs-title is-active">
+          <a href="#url-examples-curl" aria-selected="true">Curl</a>
+        </li>
+        <li class="tabs-title">
+          <a href="#url-examples-python">Python (requests)</a>
+        </li>
+      </ul>
+
+      <div class="tabs-content" data-tabs-content="url-examples">
+        <div class="tabs-panel is-active" id="url-examples-curl">
+          <code class="multiline">
+            $ curl {{config['API_BASE_URL']}}/check?url=</strong><em>http://www.example.com</em>
+          </code>
+        </div>
+          <div class="tabs-panel" id="url-examples-python">
+          <pre>
+            <code class="multiline">import requests
+  }
+import json
+
+target_url = "http://www.example.com"
+api_url = "{{config['API_BASE_URL']}}/check?url=%s" % target_url
+json_data = requests.get(api_url).content
+data = json.loads(json_data)
+print data
+            </code>
+          </pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {# Check some HTML #}
+  <section class="row">
+    <div class="columns medium-8 large-6 large-offset-1">
+      <h3>Check HTML</h3>
+
+      <ul class="tabs" data-tabs id="html-examples">
+        <li class="tabs-title is-active">
+          <a href="#html-examples-curl" aria-selected="true">Curl</a>
+        </li>
+        <li class="tabs-title">
+          <a href="#html-examples-python">Python (requests)</a>
+        </li>
+      </ul>
+
+      <div class="tabs-content" data-tabs-content="html-examples">
+        <div class="tabs-panel is-active" id="html-examples-curl">
+          <code class="multiline">
+            $ curl -H "Content-Type: application/json" -X POST -d '{"html":"&lt;html&gt;....&lt;/html&gt;"}' {{config['API_BASE_URL']}}/check
+
+          </code>
+        </div>
+          <div class="tabs-panel" id="html-examples-python">
+          <pre>
+            <code class="multiline">import requests
+import json
+
+api_url = "{{config['API_BASE_URL']}}/check"
+html = "&lt;html&gt;....&lt;/html&gt;"
+json_data = requests.post(api_url, data={'html': html}).content
+data = json.loads(json_data)
+print data
+            </code>
+          </pre>
+        </div>
+      </div>
+
     </div>
   </section>
 {% endblock %}
