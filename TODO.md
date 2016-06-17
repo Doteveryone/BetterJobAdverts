@@ -1,5 +1,6 @@
-* Make rdfa work
-* Make json-ld work
+* Finish json-ld parser
+* implement tests all for json-ld
+* implement all tests for rdfa
 * User bower for managing assets (foundation js should not be in js folder)
 * Only use foundation components that are really needed
 * Store results in database
@@ -22,6 +23,8 @@ Future:
 * Get better at spotting full addresses (currently looking for full UK postcode)
 
 Done:
+* Make rdfa work
+* Make json-ld work
 * Include parsed data in results
 * If not jobPosting, then cant check anything else (eg http://www.tesco-careers.com/JobDetails/134102.aspx)
 * Write copy for salary results
