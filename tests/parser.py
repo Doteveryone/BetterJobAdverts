@@ -24,6 +24,44 @@ class TestLicence(unittest.TestCase):
         assert parser.job_advert.creative_commons_licences == [{'name': 'Creative Commons Attribution', 'url': 'http://creativecommons.org/licenses/by-nd/4.0'}]
         assert parser.get_result('creative-commons-licence')['result'] == True
 
+class TestParserJsonld(unittest.TestCase):
+
+    def test_publishing_format(self):
+        parser = Parser()
+        parser.parse(read_test_case('schemaorg-jsonld.html'))
+        assert parser.job_advert.publishing_format == "json-ld"
+
+    def test_title(self):
+        parser = Parser()
+        parser.parse(read_test_case('schemaorg-jsonld.html'))
+        assert parser.job_advert.title == "Software Engineer"
+
+    def test_description(self):
+        parser = Parser()
+        parser.parse(read_test_case('schemaorg-jsonld.html'))
+        assert parser.job_advert.description == "Description: ABC Company Inc. seeks a full-time mid-level software engineer to develop in-house tools."
+
+class TestParserRdfa(unittest.TestCase):
+
+    def test_publishing_format(self):
+        parser = Parser()
+        parser.parse(read_test_case('schemaorg-rdfa.html'))
+        assert parser.job_advert.publishing_format == "rdfa"
+
+    def test_title(self):
+        parser = Parser()
+        parser.parse(read_test_case('schemaorg-rdfa.html'))
+        assert parser.job_advert.title == "Software Engineer"
+
+    def test_description(self):
+        parser = Parser()
+        parser.parse(read_test_case('schemaorg-rdfa.html'))
+        assert parser.job_advert.description == """Description:
+ 
+ABC Company Inc.
+
+    seeks a full-time mid-level software engineer to develop in-house tools."""
+
 class TestParserMicrodata(unittest.TestCase):
 
     def test_publishing_format(self):
@@ -39,28 +77,25 @@ class TestParserMicrodata(unittest.TestCase):
     def test_description(self):
         parser = Parser()
         parser.parse(read_test_case('schemaorg-microdata.html'))
-        assert parser.job_advert.description == u'\n    Description: ABC Company Inc.\n    seeks a full-time mid-level software engineer to develop in-house tools.\n  '
+        assert parser.job_advert.description == """Description:
+ 
+ABC Company Inc.
 
-    def test_salary(self):
-        parser = Parser()
-        parser.parse(read_test_case('schemaorg-microdata.html'))
-        assert parser.job_advert.salary == u'USD 100000'
-
-        assert parser.get_result('salary-clarity')['result'] == 'clear'
+    seeks a full-time mid-level software engineer to develop in-house tools."""
 
     def test_salary_clear(self):
         parser = Parser()
-        parser.parse(read_test_case('salary-clear.html'))
+        parser.parse(read_test_case('schemaorg-microdata-salary-clear.html'))
         assert parser.get_result('salary-clarity')['result'] == 'clear'
 
     def test_salary_unclear(self):
         parser = Parser()
-        parser.parse(read_test_case('salary-unclear.html'))
+        parser.parse(read_test_case('schemaorg-microdata-salary-unclear.html'))
         assert parser.get_result('salary-clarity')['result'] == 'unclear'
 
     def test_salary_missing(self):
         parser = Parser()
-        parser.parse(read_test_case('salary-missing.html'))
+        parser.parse(read_test_case('schemaorg-microdata-salary-missing.html'))
         assert parser.get_result('salary-clarity')['result'] == 'missing'
 
     def test_location_unclear(self):
@@ -72,14 +107,14 @@ class TestParserMicrodata(unittest.TestCase):
 
     def test_location_clear(self):
         parser = Parser()
-        parser.parse(read_test_case('location-clear-microdata.html')) 
+        parser.parse(read_test_case('schemaorg-microdata-location-clear-microdata.html')) 
         assert parser.job_advert.address == 'Somerset House, Strand, London WC2R 1LA'
 
         assert parser.get_result('location-clarity')['result'] == 'clear'
 
     def test_location_missing(self):
         parser = Parser()
-        parser.parse(read_test_case('location-missing-microdata.html')) 
+        parser.parse(read_test_case('schemaorg-microdata-location-missing-microdata.html')) 
         assert parser.job_advert.address == None
 
         assert parser.get_result('location-clarity')['result'] == 'missing'
@@ -93,7 +128,7 @@ class TestParserMicrodata(unittest.TestCase):
 
     def test_employment_type_missing(self):
         parser = Parser()
-        parser.parse(read_test_case('employment-type-missing.html'))
+        parser.parse(read_test_case('schemaorg-microdata-employment-type-missing.html'))
         assert parser.get_result('has-employment-type')['result'] == False
 
 class TestParserSchema(unittest.TestCase):
@@ -117,17 +152,17 @@ class TestParserGenderCoded(unittest.TestCase):
 
     def test_neutral(self):
         parser = Parser()
-        parser.parse(read_test_case('gender-coding-neutral.html'))
+        parser.parse(read_test_case('schemaorg-microdata-gender-coding-neutral.html'))
         assert parser.get_result('gender-coded-language')['result'] == 'neutral'
 
     def test_masculine(self):
         parser = Parser()
-        parser.parse(read_test_case('gender-coding-masculine.html'))
+        parser.parse(read_test_case('schemaorg-microdata-gender-coding-masculine.html'))
         assert 'masculine' in parser.get_result('gender-coded-language')['result']
 
     def test_feminine(self):
         parser = Parser()
-        parser.parse(read_test_case('gender-coding-feminine.html'))
+        parser.parse(read_test_case('schemaorg-microdata-gender-coding-feminine.html'))
         assert 'feminine' in parser.get_result('gender-coded-language')['result']
         
 class TestParserLanguage(unittest.TestCase):

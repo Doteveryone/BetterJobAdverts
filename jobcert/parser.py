@@ -134,71 +134,105 @@ class Parser():
                 break
         return found
 
+    def _parse_html(self, job_advert, attribute_name):
+        #used for rdfa and microdata
+
+        #title
+        title_element = job_advert.find(attrs={attribute_name: "title"})
+        if title_element:
+            self.job_advert.title = title_element.text
+
+        #description
+        description_element = job_advert.find(attrs={attribute_name: "description"})
+        if description_element:
+            self.job_advert.description = "\n".join(description_element.strings).strip()
+
+        #salary
+        salary_currency_element = job_advert.find(attrs={attribute_name: "salaryCurrency"})
+        base_salary_element = job_advert.find(attrs={attribute_name: "baseSalary"})
+
+        salary = ""
+        if salary_currency_element:
+            salary = salary_currency_element.text
+        if base_salary_element:
+            if salary != "":
+                salary = "%s %s" % (salary, base_salary_element.text)
+            else:
+                salary = base_salary_element.text
+        self.job_advert.salary = salary
+
+        #location
+        location_element = job_advert.find(attrs={attribute_name: "jobLocation"})
+        if location_element:
+            address_element = location_element.find(attrs={attribute_name: "PostalAddress"})
+            latitude_element = location_element.find(attrs={attribute_name: "latitude"})
+            longitude_element = location_element.find(attrs={attribute_name: "longitude"})
+
+            #address (if no address, just assume the whole contents)
+            if address_element:
+                self.job_advert.address = address_element.text.strip()
+            else:
+                self.job_advert.address = location_element.text.strip()
+
+            #latlng
+            if address_element and longitude_element:
+                self.latlng = [latitude_element.text, longitude_element.text]
+
+        #Employment type
+        employment_type_element = job_advert.find(attrs={attribute_name: "employmentType"})
+        if employment_type_element:
+            self.job_advert.employment_type = employment_type_element.text.strip()
+
     def _parse_microdata(self, data):
         success = False
         soup = BeautifulSoup(data, "html5lib")
-        job_advert = soup.find('div', {'itemtype' : 'http://schema.org/JobPosting'})
+        job_advert = soup.find(attrs={'itemtype' : 'http://schema.org/JobPosting'})
+
         if job_advert:
             success = True
             self.job_advert.publishing_format = 'microdata'
 
-            #title
-            title_element = job_advert.find(attrs={"itemprop": "title"})
-            if title_element:
-                self.job_advert.title = title_element.text
-
-            #description
-            description_element = job_advert.find(attrs={"itemprop": "description"})
-            if description_element:
-                self.job_advert.description = "\n".join(description_element.strings)
-                print self.job_advert.description
-
-            #salary
-            salary_currency_element = job_advert.find(attrs={"itemprop": "salaryCurrency"})
-            base_salary_element = job_advert.find(attrs={"itemprop": "baseSalary"})
-
-            salary = ""
-            if salary_currency_element:
-                salary = salary_currency_element.text
-            if base_salary_element:
-                if salary != "":
-                    salary = "%s %s" % (salary, base_salary_element.text)
-                else:
-                    salary = base_salary_element.text
-            self.job_advert.salary = salary
-
-            #location
-            location_element = job_advert.find(attrs={"itemprop": "jobLocation"})
-            if location_element:
-                address_element = location_element.find(attrs={"itemprop": "PostalAddress"})
-                latitude_element = location_element.find(attrs={"itemprop": "latitude"})
-                longitude_element = location_element.find(attrs={"itemprop": "longitude"})
-
-                #address (if no address, just assume the whole contents)
-                if address_element:
-                    self.job_advert.address = address_element.text.strip()
-                else:
-                    self.job_advert.address = location_element.text.strip()
-
-                #latlng
-                if address_element and longitude_element:
-                    self.latlng = [latitude_element.text, longitude_element.text]
-
-            #Employment type
-            employment_type_element = job_advert.find(attrs={"itemprop": "employmentType"})
-            if employment_type_element:
-                self.job_advert.employment_type = employment_type_element.text.strip()
+            self._parse_html(job_advert, "itemprop")
 
         return success
 
     def _parse_rdfa(self, data):
-        return False
+        success = False
+        soup = BeautifulSoup(data, "html5lib")
+        job_advert = soup.find(attrs={
+                'vocab' : 'http://schema.org/',
+                'typeof': 'JobPosting',
+            })
+
+        if job_advert:
+            success = True
+            self.job_advert.publishing_format = 'rdfa'
+
+            self._parse_html(job_advert, "property")
+
+        return success
 
     def _parse_jsonld(self, data):
-        return False
+        success = False
+        soup = BeautifulSoup(data, "html5lib")
+        job_advert = soup.find('script', {
+            'type' : 'application/ld+json',
+        })
+        if job_advert:
+            success = True
+            data = json.loads(job_advert.text)
+            
+            if data.get('title', False):
+                self.job_advert.title = data['title']
 
-    def _parse_html(self, data):
-        return False
+            if data.get('description', False):
+                self.job_advert.description = data['description']
+            
+            if job_advert:
+                success = True
+                self.job_advert.publishing_format = 'json-ld'
+
+        return success
 
     def _analyse_format(self):
         #is jobPosting?
@@ -330,8 +364,6 @@ class Parser():
             success = self._parse_rdfa(data)
         if not success:
             success = self._parse_jsonld(data)
-        if not success:
-            success = self._parse_html(data)
 
         #parse licence
         self._parse_creative_commons_licence(data)        

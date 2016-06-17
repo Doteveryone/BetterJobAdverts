@@ -1,6 +1,5 @@
 [![Build Status](https://travis-ci.org/Doteveryone/BetterJobAdverts.svg?branch=master)](https://travis-ci.org/Doteveryone/BetterJobAdverts)
 
-
 ###Installing and running locally
 
 Clone the repo and install requirements:
