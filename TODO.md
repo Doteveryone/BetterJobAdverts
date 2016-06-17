@@ -4,8 +4,6 @@
 * User bower for managing assets (foundation js should not be in js folder)
 * Only use foundation components that are really needed
 * Store results in database
-* line width on results page
-* Footer on large screens is a mess
 * Add more tests for the API
 * Add dev instructions to readme
 
@@ -23,6 +21,8 @@ Future:
 * Get better at spotting full addresses (currently looking for full UK postcode)
 
 Done:
+* line width on results page
+* Footer on large screens is a mess
 * Make rdfa work
 * Make json-ld work
 * Include parsed data in results

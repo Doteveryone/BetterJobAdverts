@@ -123,6 +123,14 @@ footer {
   padding-bottom:$global-padding / 2;
   background-color:$white;
   color:$dark-gray;
+  .logo {
+    img {
+      width:100px;
+      vertical-align: middle;
+      margin-top:$global-padding / 2;
+      margin-right:$global-padding;
+    }
+  }
 }
 
 .tabs-content {

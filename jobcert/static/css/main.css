@@ -5498,8 +5498,20 @@ footer {
   background-color: #fefefe;
   color: #8a8a8a;
 }
+/* line 127, ../../assets/sass/main.scss */
+footer .logo img {
+  width: 100px;
+  vertical-align: middle;
+  margin-top: 0.5rem;
+  margin-right: 1rem;
+}
 
-/* line 128, ../../assets/sass/main.scss */
+/* line 136, ../../assets/sass/main.scss */
 .tabs-content {
   margin-bottom: 2rem;
+}
+
+/* line 140, ../../assets/sass/main.scss */
+.tabs-title a {
+  text-decoration: none;
 }
