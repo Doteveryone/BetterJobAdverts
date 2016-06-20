@@ -5,7 +5,7 @@
 * Only use foundation components that are really needed
 * Store results in database
 * Add more tests for the API
-* Add dev instructions to readme
+
 
 Before making public:
 * Add contract type check
@@ -21,6 +21,7 @@ Future:
 * Get better at spotting full addresses (currently looking for full UK postcode)
 
 Done:
+* Add dev instructions to readme
 * line width on results page
 * Footer on large screens is a mess
 * Make rdfa work
