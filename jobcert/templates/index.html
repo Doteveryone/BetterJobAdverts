@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% block title %}Doteveryone - Better Job Adverts{% endblock %}
 {% block content %}
   <section class="row">
     <div class="columns medium-8 large-6 large-offset-1">
@@ -11,6 +12,7 @@
     <div class="columns medium-8 large-6 large-offset-1">
       <h2>Check an existing advert</h2>
       <form method="get" action="{{url_for('check')}}">
+        <label for="url">Enter a URL</label>
         <div class="input-group">
           <input name="url" type="url" placeholder="http://" class="input-group-field" />
           <div class="input-group-button">
@@ -23,6 +25,7 @@
   <section class="row">
     <div class="columns medium-8 large-6 large-offset-1">
       <h2>Check HTML</h2>
+      <label for="html">Enter some HTML</label>
       <form method="post" action="{{url_for('check')}}">
         <textarea name="html" rows="4"></textarea>
         <button type="submit" class="button expanded">Go</button>
