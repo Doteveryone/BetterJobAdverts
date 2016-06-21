@@ -37,6 +37,8 @@ class CheckApi(Resource):
             error = "Sorry, that URL does not exist", 400
         except requests.exceptions.MissingSchema:
             error = "Sorry, that is not a valid URL", 400
+        except requests.exceptions.InvalidSchema:
+            error = "Sorry, that is not a valid URL", 400
         except requests.exceptions.HTTPError:
             error = "Sorry, something went wrong", 502
         except requests.exceptions.Timeout:

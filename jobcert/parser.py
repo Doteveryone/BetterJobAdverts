@@ -220,17 +220,24 @@ class Parser():
         })
         if job_advert:
             success = True
+            self.job_advert.publishing_format = 'json-ld'
             data = json.loads(job_advert.text)
             
+            #title
             if data.get('title', False):
                 self.job_advert.title = data['title']
 
+            #description
             if data.get('description', False):
                 self.job_advert.description = data['description']
-            
-            if job_advert:
-                success = True
-                self.job_advert.publishing_format = 'json-ld'
+
+            #salary
+            if data.get('baseSalary', False):
+                salary = "%s %s" % (data.get('salaryCurrency', False), data.get('baseSalary', False))
+                salary = salary.strip()
+                if salary != "":
+                    self.job_advert.salary = salary.strip()
+                
 
         return success
 

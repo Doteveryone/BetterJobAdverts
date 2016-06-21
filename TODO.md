@@ -5,6 +5,7 @@
 * Only use foundation components that are really needed
 * Store results in database
 * Add more tests for the API
+* Handle when not all fields are present (eg description on retail jobs)
 
 
 Before making public:

@@ -40,7 +40,9 @@ def check():
         except requests.exceptions.ConnectionError:
             error = "Sorry, that URL does not exist"
         except requests.exceptions.MissingSchema:
-            error = "Sorry, that is not a valid URL"            
+            error = "Sorry, that is not a valid URL"  
+        except requests.exceptions.InvalidSchema:
+            error = "Sorry, that is not a valid URL"
         except requests.exceptions.HTTPError:
             error = "Sorry, something went wrong"
         except requests.exceptions.Timeout:

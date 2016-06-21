@@ -41,6 +41,22 @@ class TestParserJsonld(unittest.TestCase):
         parser.parse(read_test_case('schemaorg-jsonld.html'))
         assert parser.job_advert.description == "Description: ABC Company Inc. seeks a full-time mid-level software engineer to develop in-house tools."
 
+    def test_salary_clear(self):
+        parser = Parser()
+        parser.parse(read_test_case('schemaorg-jsonld-salary-clear.html'))
+        assert parser.get_result('salary-clarity')['result'] == 'clear'
+
+    def test_salary_unclear(self):
+        parser = Parser()
+        parser.parse(read_test_case('schemaorg-jsonld-salary-unclear.html'))
+        assert parser.get_result('salary-clarity')['result'] == 'unclear'
+
+    def test_salary_missing(self):
+        parser = Parser()
+        parser.parse(read_test_case('schemaorg-jsonld-salary-missing.html'))
+        assert parser.get_result('salary-clarity')['result'] == 'missing'
+
+
 class TestParserRdfa(unittest.TestCase):
 
     def test_publishing_format(self):
@@ -61,6 +77,21 @@ class TestParserRdfa(unittest.TestCase):
 ABC Company Inc.
 
     seeks a full-time mid-level software engineer to develop in-house tools."""
+
+    def test_salary_clear(self):
+        parser = Parser()
+        parser.parse(read_test_case('schemaorg-rdfa-salary-clear.html'))
+        assert parser.get_result('salary-clarity')['result'] == 'clear'
+
+    def test_salary_unclear(self):
+        parser = Parser()
+        parser.parse(read_test_case('schemaorg-rdfa-salary-unclear.html'))
+        assert parser.get_result('salary-clarity')['result'] == 'unclear'
+
+    def test_salary_missing(self):
+        parser = Parser()
+        parser.parse(read_test_case('schemaorg-rdfa-salary-missing.html'))
+        assert parser.get_result('salary-clarity')['result'] == 'missing'
 
 class TestParserMicrodata(unittest.TestCase):
 
