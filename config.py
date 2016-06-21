@@ -14,6 +14,5 @@ class DevelopmentConfig(Config):
     SECRET_KEY = 'not-a-secret'
     BASIC_AUTH_FORCE = False
 
-
 class TestConfig(DevelopmentConfig):
     TESTING = True

@@ -39,6 +39,8 @@ def check():
             html = requests.get(url, verify=False).content
         except requests.exceptions.ConnectionError:
             error = "Sorry, that URL does not exist"
+        except requests.exceptions.MissingSchema:
+            error = "Sorry, that is not a valid URL"            
         except requests.exceptions.HTTPError:
             error = "Sorry, something went wrong"
         except requests.exceptions.Timeout:
