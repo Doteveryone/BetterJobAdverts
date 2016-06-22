@@ -56,6 +56,38 @@ class TestParserJsonld(unittest.TestCase):
         parser.parse(read_test_case('schemaorg-jsonld-salary-missing.html'))
         assert parser.get_result('salary-clarity')['result'] == 'missing'
 
+    def test_location_unclear(self):
+        parser = Parser()
+        parser.parse(read_test_case('schemaorg-jsonld.html')) 
+        assert parser.job_advert.address == 'Kirkland, WA'
+
+        assert parser.get_result('location-clarity')['result'] == 'unclear'
+
+    def test_location_clear(self):
+        parser = Parser()
+        parser.parse(read_test_case('schemaorg-jsonld-location-clear.html')) 
+        assert parser.job_advert.address == 'Somerset House, Strand, London WC2R 1LA, London'
+
+        assert parser.get_result('location-clarity')['result'] == 'clear'
+
+    def test_location_missing(self):
+        parser = Parser()
+        parser.parse(read_test_case('schemaorg-jsonld-location-missing.html')) 
+        assert parser.job_advert.address == None
+
+        assert parser.get_result('location-clarity')['result'] == 'missing'
+
+    def test_employment_type(self):
+        parser = Parser()
+        parser.parse(read_test_case('schemaorg-jsonld.html'))
+        assert parser.job_advert.employment_type == 'Full-time'
+
+        assert parser.get_result('has-employment-type')['result'] == True
+
+    def test_employment_type_missing(self):
+        parser = Parser()
+        parser.parse(read_test_case('schemaorg-rdfa-employment-type-missing.html'))
+        assert parser.get_result('has-employment-type')['result'] == False
 
 class TestParserRdfa(unittest.TestCase):
 
@@ -92,6 +124,39 @@ ABC Company Inc.
         parser = Parser()
         parser.parse(read_test_case('schemaorg-rdfa-salary-missing.html'))
         assert parser.get_result('salary-clarity')['result'] == 'missing'
+
+    def test_location_unclear(self):
+        parser = Parser()
+        parser.parse(read_test_case('schemaorg-rdfa.html')) 
+        assert parser.job_advert.address == 'Kirkland WA'
+
+        assert parser.get_result('location-clarity')['result'] == 'unclear'
+
+    def test_location_clear(self):
+        parser = Parser()
+        parser.parse(read_test_case('schemaorg-rdfa-location-clear.html')) 
+        assert parser.job_advert.address == 'Somerset House, Strand, London WC2R 1LA'
+
+        assert parser.get_result('location-clarity')['result'] == 'clear'
+
+    def test_location_missing(self):
+        parser = Parser()
+        parser.parse(read_test_case('schemaorg-rdfa-location-missing.html')) 
+        assert parser.job_advert.address == None
+
+        assert parser.get_result('location-clarity')['result'] == 'missing'
+
+    def test_employment_type(self):
+        parser = Parser()
+        parser.parse(read_test_case('schemaorg-rdfa.html'))
+        assert parser.job_advert.employment_type == 'Full-time'
+
+        assert parser.get_result('has-employment-type')['result'] == True
+
+    def test_employment_type_missing(self):
+        parser = Parser()
+        parser.parse(read_test_case('schemaorg-rdfa-employment-type-missing.html'))
+        assert parser.get_result('has-employment-type')['result'] == False
 
 class TestParserMicrodata(unittest.TestCase):
 
@@ -138,14 +203,14 @@ ABC Company Inc.
 
     def test_location_clear(self):
         parser = Parser()
-        parser.parse(read_test_case('schemaorg-microdata-location-clear-microdata.html')) 
+        parser.parse(read_test_case('schemaorg-microdata-location-clear.html')) 
         assert parser.job_advert.address == 'Somerset House, Strand, London WC2R 1LA'
 
         assert parser.get_result('location-clarity')['result'] == 'clear'
 
     def test_location_missing(self):
         parser = Parser()
-        parser.parse(read_test_case('schemaorg-microdata-location-missing-microdata.html')) 
+        parser.parse(read_test_case('schemaorg-microdata-location-missing.html')) 
         assert parser.job_advert.address == None
 
         assert parser.get_result('location-clarity')['result'] == 'missing'

@@ -14,12 +14,12 @@ def contains_postcode(data):
     thd = 'ABCDEFGHJKSTUW'
     fth = 'ABEHMNPRVWXY'
 
-    if re.search('[%s][1-9]\d[%s][%s]$' % (fst, inward, inward), data) or \
-        re.search('[%s][1-9]\d\d[%s][%s]$' % (fst, inward, inward), data) or \
-        re.search('[%s][%s]\d\d[%s][%s]$' % (fst, sec, inward, inward), data) or \
-        re.search('[%s][%s][1-9]\d\d[%s][%s]$' % (fst, sec, inward, inward), data) or \
-        re.search('[%s][1-9][%s]\d[%s][%s]$' % (fst, thd, inward, inward), data) or \
-        re.search('[%s][%s][1-9][%s]\d[%s][%s]$' % (fst, sec, fth, inward, inward), data):
+    if re.search('[%s][1-9]\d[%s][%s]' % (fst, inward, inward), data) or \
+        re.search('[%s][1-9]\d\d[%s][%s]' % (fst, inward, inward), data) or \
+        re.search('[%s][%s]\d\d[%s][%s]' % (fst, sec, inward, inward), data) or \
+        re.search('[%s][%s][1-9]\d\d[%s][%s]' % (fst, sec, inward, inward), data) or \
+        re.search('[%s][1-9][%s]\d[%s][%s]' % (fst, thd, inward, inward), data) or \
+        re.search('[%s][%s][1-9][%s]\d[%s][%s]' % (fst, sec, fth, inward, inward), data):
         return True
 
     return False
@@ -175,8 +175,8 @@ class Parser():
                 self.job_advert.address = location_element.text.strip()
 
             #latlng
-            if address_element and longitude_element:
-                self.latlng = [latitude_element.text, longitude_element.text]
+            if longitude_element:
+                self.job_advert.latlng = [latitude_element.text, longitude_element.text]
 
         #Employment type
         employment_type_element = job_advert.find(attrs={attribute_name: "employmentType"})
@@ -222,7 +222,7 @@ class Parser():
             success = True
             self.job_advert.publishing_format = 'json-ld'
             data = json.loads(job_advert.text)
-            
+
             #title
             if data.get('title', False):
                 self.job_advert.title = data['title']
@@ -237,7 +237,25 @@ class Parser():
                 salary = salary.strip()
                 if salary != "":
                     self.job_advert.salary = salary.strip()
-                
+
+            if data.get('jobLocation', False):
+
+                #address
+                if data['jobLocation'].get('address', False):
+                    address = ""
+                    for k,v in data['jobLocation']['address'].iteritems():
+                        if k != '@type':
+                            address += (v + ", ")
+                    address = re.sub(', $', '', address)
+                    self.job_advert.address = str(address).strip()
+
+                #latlng
+                if data['jobLocation'].get('geo', False):
+                    self.job_advert.latlng = [data['latitude'], data['longitude']]
+
+            #description
+            if data.get('employmentType', False):
+                self.job_advert.employment_type = data['employmentType']
 
         return success
 
