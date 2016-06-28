@@ -34,26 +34,24 @@
   </section>
     <section class="row">
     <div class="columns medium-8 large-6 large-offset-1">
-      <h2>Who supports schema.org jobPosting?</h2>
+      <h3>Who supports schema.org jobPosting?</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th width="200">Support</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for organisation in jobposting_support %}
+          <tr>
+            <td><a href="{{organisation['url']}}">{{organisation['name']}}</a></td>
+            <td>{{organisation['support']}}</td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+      <p><a href="https://raw.githubusercontent.com/Doteveryone/BetterJobAdverts/master/jobcert/data/jobposting-support.json">You can download this data</a>. To add a website to this list, <a href="https://github.com/Doteveryone/BetterJobAdverts/blob/master/jobcert/data/jobposting-support.json">please create a pull request.</a></p>
     </div>
-  </section>
-  <section class="row collapse">
-    <table class="columns  large-6 large-offset-1">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th width="200">Support</th>
-        </tr>
-      </thead>
-      <tbody>
-      {% for organisation in jobposting_support %}
-        <tr>
-          <td><a href="[[organisation['url']}}">{{organisation['name']}}</a></td>
-          <td>{{organisation['support']}}</td>
-        </tr>
-      {% endfor %}
-      </tbody>
-    </table>
-    <p>To add your website to this list, please create a pull request</p>
   </section>
 {% endblock %}
