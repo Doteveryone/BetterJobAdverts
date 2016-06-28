@@ -1,7 +1,5 @@
 * User bower for managing assets (foundation js should not be in js folder)
 * Only use foundation components that are really needed
-* Store results in database
-* Add more tests for the API
 * Handle when not all fields are present (eg description on retail jobs)
 
 
@@ -9,8 +7,6 @@ Before making public:
 * Screen reader check
 * Automated accessibility check
 * HTML validator on all pages
-* Check if location has latlng
-* Check is location has postcode
 
 Future:
 * Get better at spotting full addresses (currently looking for full UK postcode)
@@ -18,6 +14,7 @@ Future:
 * Add contract type check
 
 Done:
+* Add more tests for the API
 * API
 * Finish json-ld parser
 * implement tests all for json-ld

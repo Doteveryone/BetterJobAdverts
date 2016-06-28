@@ -1,11 +1,10 @@
-@import '_settings.scss';
 @import 'foundation';
+@import '_settings.scss';
 @include foundation-everything;
 
 a {
   text-decoration:underline;
 }
-
 
 dl {
   dt{

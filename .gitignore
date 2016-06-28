@@ -8,3 +8,4 @@ man
 pip-selfcheck.json
 .sass-cache
 jobcert/assets/.sass-cache
+node_modules
