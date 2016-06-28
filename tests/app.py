@@ -19,7 +19,7 @@ class TestApp(unittest.TestCase):
         assert rv.status == '200 OK'
 
     def test_report(self):
-        rv = self.app.get('/report')
+        rv = self.app.get('/about')
         assert rv.status == '200 OK'
         assert 'Better Job Adverts' in rv.data
 

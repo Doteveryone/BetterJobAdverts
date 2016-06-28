@@ -9,9 +9,16 @@ from parser import Parser
 
 @app.route('/')
 def index():
-    return render_template('index.html', menu_item="tools")
+    
+    jobsposting_support_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data', 'jobposting-support.json')
+    
+    jobsposting_support_json = file(jobsposting_support_file).read()
+    jobsposting_support_data = json.loads(jobsposting_support_json)
+    jobsposting_support_data = sorted(jobsposting_support_data, key=lambda k: k['name'])
+    
+    return render_template('index.html', menu_item="tools", jobposting_support = jobsposting_support_data)
 
-@app.route('/report')
+@app.route('/about')
 def report():
     return render_template('report.html', menu_item="report")
 

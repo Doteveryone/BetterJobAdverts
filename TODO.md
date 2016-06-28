@@ -1,6 +1,3 @@
-* Finish json-ld parser
-* implement tests all for json-ld
-* implement all tests for rdfa
 * User bower for managing assets (foundation js should not be in js folder)
 * Only use foundation components that are really needed
 * Store results in database
@@ -9,9 +6,6 @@
 
 
 Before making public:
-* Add contract type check
-* API
-* make python 3
 * Screen reader check
 * Automated accessibility check
 * HTML validator on all pages
@@ -20,8 +14,14 @@ Before making public:
 
 Future:
 * Get better at spotting full addresses (currently looking for full UK postcode)
+* make python 3
+* Add contract type check
 
 Done:
+* API
+* Finish json-ld parser
+* implement tests all for json-ld
+* implement all tests for rdfa
 * Add dev instructions to readme
 * line width on results page
 * Footer on large screens is a mess
