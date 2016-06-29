@@ -27,6 +27,15 @@ def contains_postcode(data):
 def contains_numbers(data):
     return bool(re.search(r'\d', data))
 
+def element_content(element):
+    result = None
+    if element:
+        if element.text != '':
+            result = element.text.strip()
+        elif element.get('content'):
+            result = element['content'].strip()
+    return result
+
 class JobAdvert():
     title = None
     salary = None
@@ -139,8 +148,7 @@ class Parser():
 
         #title
         title_element = job_advert.find(attrs={attribute_name: "title"})
-        if title_element:
-            self.job_advert.title = title_element.text
+        self.job_advert.title = element_content(title_element)
 
         #description
         description_element = job_advert.find(attrs={attribute_name: "description"})
