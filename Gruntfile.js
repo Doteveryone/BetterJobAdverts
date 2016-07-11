@@ -27,9 +27,9 @@ module.exports = function(grunt) {
           },
           {
             expand: true,
-            cwd: 'jobcert/assets/vendor/modernizr-min/dist',
+            cwd: 'jobcert/assets/vendor/html5shiv/dist',
             src: ['**/*.js'], 
-            dest: 'jobcert/static/vendor/modernizr', 
+            dest: 'jobcert/static/vendor/html5shiv', 
             filter: 'isFile'
           }
         ]

@@ -2,12 +2,6 @@
 * Handle when not all fields are present (eg description on retail jobs)
 * Browser check
 
-
-Future:
-* Get better at spotting full addresses (currently looking for full UK postcode)
-* make python 3
-* Add contract type check
-
 Done:
 * Screen reader check
 * Automated accessibility check
@@ -54,3 +48,8 @@ Done:
 * Write copy for readability results
 * API
 * check why this has a low reading score! http://www.w4mpjobs.org/JobDetails.aspx?jobid=56341
+
+Future:
+* Get better at spotting full addresses (currently looking for full UK postcode)
+* make python 3
+* Add contract type check
