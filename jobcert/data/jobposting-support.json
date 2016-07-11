@@ -2,16 +2,41 @@
   {
     "name": "w4mp",
     "url": "http://www.w4mp.org",
-    "support": "Yes"
+    "support": "Incomplete"
   },
   {
     "name": "Total Jobs",
     "url": "http://www.totaljobs.com",
-    "support": "Yes"
+    "support": "Incomplete"
   },
   {
     "name": "Retail Choice",
     "url": "http://www.retailchoice.com",
-    "support": "Yes"
-  }  
+    "support": "Incomplete"
+  },
+  {
+    "name": "The Guardian",
+    "url": "https://jobs.theguardian.com",
+    "support": "Incomplete"
+  },
+  {
+    "name": "Universal Jobmatch",
+    "url": "https://jobsearch.direct.gov.uk",
+    "support": "No"
+  },
+  {
+    "name": "NHS Jobs",
+    "url": "https://www.jobs.nhs.uk",
+    "support": "No"
+  },
+  {
+    "name": "Reed",
+    "url": "http://www.reed.co.uk",
+    "support": "Incomplete"
+  },
+  {
+    "name": "Tesco Careers",
+    "url": "http://www.tesco-careers.com",
+    "support": "No"
+  }
 ]

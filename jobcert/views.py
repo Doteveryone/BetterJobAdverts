@@ -3,7 +3,7 @@ import os
 import json
 from flask import request, render_template, send_from_directory
 from bs4 import BeautifulSoup
-from jobcert import app
+from jobcert import app, db, models
 import job_posting
 from parser import Parser
 
@@ -59,5 +59,11 @@ def check():
     parser = Parser()
     if error == False:
         parser.parse(html)
+
+        #save results
+        log = models.Log()
+        log.populate_from_parser(url, parser)
+        db.session.add(log)
+        db.session.commit()
 
     return render_template('check.html', menu_item="tools", parser=parser, error=error, url=url)

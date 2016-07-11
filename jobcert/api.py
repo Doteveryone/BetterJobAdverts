@@ -1,5 +1,5 @@
 from flask_restful import Resource, reqparse, inputs
-from jobcert import app, api
+from jobcert import app, db, api, models
 from parser import Parser
 import requests
 import json
@@ -28,6 +28,13 @@ class CheckApi(Resource):
             html = requests.get(args['url'], verify=False).content
             parser = Parser()
             parser.parse(html)
+            
+            #log results
+            log = models.Log()
+            log.populate_from_parser(url, parser)
+            db.session.add(log)
+            db.session.commit()
+
             return {
               'job_advert': parser.job_advert.to_dict(),
               'analysis': parser.results

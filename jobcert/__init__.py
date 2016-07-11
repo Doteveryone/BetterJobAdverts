@@ -13,10 +13,11 @@ app = Flask(__name__)
 app.config.from_object(os.environ.get('SETTINGS', 'config.DevelopmentConfig'))
 api = Api(app)
 basic_auth = BasicAuth(app)
-# db = SQLAlchemy(app)
-# db.create_all()
+db = SQLAlchemy(app)
 
 import views
 import api
 import filters
-# import models
+import models
+
+db.create_all()

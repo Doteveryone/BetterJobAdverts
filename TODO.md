@@ -1,4 +1,5 @@
 Todo:
+* Look again at what incomplete means
 * Get better at spotting full addresses (currently looking for full UK postcode)
 * make python 3
 * Add contract type check
