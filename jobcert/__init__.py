@@ -8,7 +8,6 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_restful import Api
 from flask.ext.basicauth import BasicAuth
 
-
 app = Flask(__name__)
 app.config.from_object(os.environ.get('SETTINGS', 'config.DevelopmentConfig'))
 api = Api(app)

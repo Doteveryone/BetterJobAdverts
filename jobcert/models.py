@@ -6,8 +6,8 @@ class Log(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     checked_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
-    domain = db.Column(db.String(255))
-    url = db.Column(db.String(80))
+    domain = db.Column(db.String(80))
+    url = db.Column(db.String(255))
     valid_jobposting = db.Column(db.String(80))
     publishing_format = db.Column(db.String(80))
     employment_type = db.Column(db.String(80))
