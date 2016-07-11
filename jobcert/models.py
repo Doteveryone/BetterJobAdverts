@@ -20,7 +20,8 @@ class Log(db.Model):
     def populate_from_parser(self, url, parser):
         
         self.url = url
-        self.domain = urlparse(url)[1]
+        if url:
+            self.domain = urlparse(url)[1]
 
         self.valid_jobposting = parser.get_result('valid-jobposting')['result']
         self.publishing_format = parser.job_advert.publishing_format
