@@ -22,13 +22,13 @@
     {% endif %}
   {% endwith %}
 
-  <header role="banner"  class="row">
+  <header class="row">
     <div class="small-12 large-8 large-offset-1 columns">
       <h1>
         <a href="{{url_for('index')}}">Better Job Adverts</a>
         <small class="product-status"><span>Alpha</span></small>
       </h1>
-      <nav role="navigation">
+      <nav>
         <ul class="menu">
           <li{% if menu_item == 'tools'%} class="active"{% endif %}>
             <a href="{{url_for('index')}}">Check an advert</a>
@@ -43,7 +43,7 @@
       </nav>
     </div>
   </header>
-  <main role="main">
+  <main>
     {% block content %}{% endblock %}
   </main>
   <footer>

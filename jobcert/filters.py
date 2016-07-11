@@ -34,6 +34,15 @@ def boolean_status_filter(s):
     else:
         return "alert"
 
+@app.template_filter('format_status')
+def format_status_filter(s):
+    if s == 'yes':
+        return "success"
+    if s == 'incomplete':
+        return "warning"        
+    else:
+        return "alert"
+
 @app.template_filter('readability_status')
 def readability_status_filter(s):
     score = int(s)

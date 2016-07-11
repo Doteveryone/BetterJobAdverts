@@ -1,20 +1,20 @@
 {% extends "base.html" %}
 {% block title %}Doteveryone - Better Job Adverts{% endblock %}
 {% block content %}
-  <section class="row">
+  <div class="row">
     <div class="columns medium-8 large-6 large-offset-1">
       <p class="lead">
         Poor quality job adverts fail job hunters and employers. This tool checks job adverts against the <a href="https://schema.org/JobPosting">schema.org jobPosting standard</a> and other checks.
       </p>
     </div>
-  </section>
+  </div>
   <section class="row">
     <div class="columns medium-8 large-6 large-offset-1">
       <h2>Check an existing advert</h2>
       <form method="get" action="{{url_for('check')}}">
         <label for="url">Enter a URL</label>
         <div class="input-group">
-          <input name="url" type="url" placeholder="http://" class="input-group-field" />
+          <input name="url" id="url" type="url" placeholder="http://" class="input-group-field" />
           <div class="input-group-button">
             <button type="submit" class="button">Go</button>
           </div>
@@ -27,7 +27,7 @@
       <h2>Check HTML</h2>
       <label for="html">Enter some HTML</label>
       <form method="post" action="{{url_for('check')}}">
-        <textarea name="html" rows="4"></textarea>
+        <textarea name="html" id="html" rows="4"></textarea>
         <button type="submit" class="button expanded">Go</button>
       </form>
     </div>
@@ -39,7 +39,7 @@
         <thead>
           <tr>
             <th>Name</th>
-            <th width="200">Support</th>
+            <th>Support</th>
           </tr>
         </thead>
         <tbody>

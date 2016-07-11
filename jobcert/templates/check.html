@@ -1,19 +1,19 @@
 {% extends "base.html" %}
 {% block title %}Results{% endblock %}
 {% block content %}
-  <section class="row">
+  <div class="row">
     <div class="product-message columns medium-8 large-8 large-offset-1">
       <p>
         <strong>Feedback:</strong> help us improve this service by <a href="https://github.com/Doteveryone/BetterJobAdverts/issues">reporting any bugs or suggestions</a>
       </p>
     </div>
-  </section>
+  </div>
   {% if error %}
-    <section class="row">
+    <div class="row">
       <div class="columns medium-8 large-8 large-offset-1">
         <p>{{error}}</p>
       </div>
-    </section>
+    </div>
   {% else %}  
     <section class="row">
       <div class="columns medium-8 large-8 large-offset-1">
@@ -21,13 +21,20 @@
 
         <ul class="no-bullet">
           {# jobPosting schema #}
-          <li class="callout {{parser.get_result('valid-jobposting')['result']|boolean_status}}">
+          <li class="callout {{parser.get_result('valid-jobposting')['result']|format_status}}">
             <h5>jobPosting standard</h5>
-            {% if parser.get_result('valid-jobposting')['result'] == True %}
+            {% if parser.get_result('valid-jobposting')['result'] == 'yes' %}
               <div class="stat">Yes</div>
               <code>{{parser.job_advert.publishing_format}}</code>
               <p>
                 This job advert uses the <a href="http://schema.org/JobPosting">jobPosting standard</a> from schema.org.
+            {% elif parser.get_result('valid-jobposting')['result'] == 'incomplete' %}
+              <div class="stat">Incomplete</div>
+              <code>{{parser.job_advert.publishing_format}}</code>
+              <p>
+                This job advert uses the <a href="http://schema.org/JobPosting">jobPosting standard</a> from schema.org, but is missing either a <code>description</code>, <code>jobLocation</code>, <code>salaryCurrency</code> or <code>employmentType</code> field.
+              </p>
+              <p>
             {% else %}
               <div class="stat">No</div>
                 {% if parser.job_advert.publishing_format %}
@@ -41,7 +48,7 @@
           </li>
 
           {# Everything else #}
-          {% if parser.get_result('valid-jobposting')['result'] == True %}
+          {% if parser.get_result('valid-jobposting')['result'] in ['yes', 'incomplete'] %}
             {% include '_check_jobposting.html' %}
           {% else %}
             {% include '_check_non_jobposting.html' %}

@@ -1,19 +1,19 @@
 {% extends "base.html" %}
 {% block title %}API{% endblock %}
 {% block content %}
-  <section class="row">
+  <div class="row">
     <div class="columns medium-8 large-6 large-offset-1">
       <h2>API</h2>
       <p>You can also check job adverts via an API.</p>
     </div>
-  </section>
+  </div>
 
   {# Check a URL #}
   <section class="row">
     <div class="columns medium-8 large-6 large-offset-1">
       <h3>Check a URL</h3>
 
-      <ul class="tabs" data-tabs id="url-examples">
+      <ul class="tabs" data-tabs id="url-examples" role="tablist">
         <li class="tabs-title is-active">
           <a href="#url-examples-curl" aria-selected="true">Curl</a>
         </li>
@@ -25,7 +25,7 @@
       <div class="tabs-content" data-tabs-content="url-examples">
         <div class="tabs-panel is-active" id="url-examples-curl">
           <code class="multiline">
-            $ curl {{config['API_BASE_URL']}}/check?url=</strong><em>http://www.example.com</em>
+            $ curl {{config['API_BASE_URL']}}/check?url=<em>http://www.example.com</em>
           </code>
         </div>
           <div class="tabs-panel" id="url-examples-python">
@@ -51,7 +51,7 @@ print data
     <div class="columns medium-8 large-6 large-offset-1">
       <h3>Check HTML</h3>
 
-      <ul class="tabs" data-tabs id="html-examples">
+      <ul class="tabs" data-tabs id="html-examples" role="tablist">
         <li class="tabs-title is-active">
           <a href="#html-examples-curl" aria-selected="true">Curl</a>
         </li>

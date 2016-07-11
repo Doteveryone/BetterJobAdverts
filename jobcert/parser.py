@@ -268,11 +268,18 @@ class Parser():
         return success
 
     def _analyse_format(self):
-        #is jobPosting?
+        #is jobPosting + minimum information
+        result = "missing"
+        if self.job_advert.publishing_format in ['microdata', 'rdfa', 'jsonld']:
+            if self.job_advert.description and self.job_advert.address and self.job_advert.salary and self.job_advert.employment_type:
+                result = "yes"
+            else:
+                result = "incomplete"
+
         self.results.append(
           {
             'name': 'valid-jobposting',
-            'result': self.job_advert.publishing_format in ['microdata', 'rdfa', 'jsonld'],
+            'result': result,
             'explanation': '',
           }
         )

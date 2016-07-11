@@ -1,7 +1,6 @@
-* User bower for managing assets (foundation js should not be in js folder)
 * Only use foundation components that are really needed
 * Handle when not all fields are present (eg description on retail jobs)
-
+* BRowser check
 
 Before making public:
 * Screen reader check
@@ -14,6 +13,7 @@ Future:
 * Add contract type check
 
 Done:
+* User bower for managing assets (foundation js should not be in js folder)
 * Add more tests for the API
 * API
 * Finish json-ld parser
