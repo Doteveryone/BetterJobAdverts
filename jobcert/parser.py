@@ -204,7 +204,12 @@ class Parser():
     def _parse_microdata(self, data):
         success = False
         soup = BeautifulSoup(data, "html5lib")
+
         job_advert = soup.find(attrs={'itemtype' : 'http://schema.org/JobPosting'})
+
+        if not job_advert:
+            job_advert =  soup.find(attrs={'itemtype' : 'https://schema.org/JobPosting'})
+
 
         if job_advert:
             success = True
@@ -219,6 +224,11 @@ class Parser():
         soup = BeautifulSoup(data, "html5lib")
         job_advert = soup.find(attrs={
                 'vocab' : 'http://schema.org/',
+                'typeof': 'JobPosting',
+            })
+        if not job_advert:
+            job_advert = soup.find(attrs={
+                'vocab' : 'https://schema.org/',
                 'typeof': 'JobPosting',
             })
 
