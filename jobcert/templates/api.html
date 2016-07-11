@@ -35,10 +35,10 @@
 import json
 
 target_url = "http://www.example.com"
-api_url = "{{config['API_BASE_URL']}}/check?url=%s" % target_url
+api_url = "{{config['API_BASE_URL']}}/check?url={}".format(target_url)
 json_data = requests.get(api_url).content
 data = json.loads(json_data)
-print data
+print(data)
             </code>
           </pre>
         </div>
@@ -76,7 +76,7 @@ api_url = "{{config['API_BASE_URL']}}/check"
 html = "&lt;html&gt;....&lt;/html&gt;"
 json_data = requests.post(api_url, data={'html': html}).content
 data = json.loads(json_data)
-print data
+print(data)
             </code>
           </pre>
         </div>
