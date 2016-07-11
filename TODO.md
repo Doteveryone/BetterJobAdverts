@@ -2,8 +2,6 @@
 * Handle when not all fields are present (eg description on retail jobs)
 * Browser check
 
-Before making public:
-* Screen reader check
 
 Future:
 * Get better at spotting full addresses (currently looking for full UK postcode)
@@ -11,6 +9,7 @@ Future:
 * Add contract type check
 
 Done:
+* Screen reader check
 * Automated accessibility check
 * HTML validator on all pages
 * User bower for managing assets (foundation js should not be in js folder)

@@ -1,0 +1,30 @@
+{
+  "name": "modernizr-min",
+  "version": "3.2.0",
+  "authors": [
+    "Wooram Jun"
+  ],
+  "description": "Minified version of Modernizr.",
+  "main": "dist/modernizr.min.js",
+  "keywords": [
+    "modernizr"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/chatii2412/modernizr-min",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "original",
+    "Gruntfile.js"
+  ],
+  "_release": "3.2.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "v3.2.0",
+    "commit": "39314100acce52a5fde6c9977b2153d7ae1f7c80"
+  },
+  "_source": "https://github.com/chatii2412/modernizr-min.git",
+  "_target": "^3.2.0",
+  "_originalSource": "modernizr-min",
+  "_direct": true
+}

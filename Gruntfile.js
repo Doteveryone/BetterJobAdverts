@@ -24,6 +24,13 @@ module.exports = function(grunt) {
             src: ['**/*.js'], 
             dest: 'jobcert/static/vendor/jquery', 
             filter: 'isFile'
+          },
+          {
+            expand: true,
+            cwd: 'jobcert/assets/vendor/modernizr-min/dist',
+            src: ['**/*.js'], 
+            dest: 'jobcert/static/vendor/modernizr', 
+            filter: 'isFile'
           }
         ]
       }
