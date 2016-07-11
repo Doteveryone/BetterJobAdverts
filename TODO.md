@@ -1,11 +1,9 @@
 * Only use foundation components that are really needed
 * Handle when not all fields are present (eg description on retail jobs)
-* BRowser check
+* Browser check
 
 Before making public:
 * Screen reader check
-* Automated accessibility check
-* HTML validator on all pages
 
 Future:
 * Get better at spotting full addresses (currently looking for full UK postcode)
@@ -13,6 +11,8 @@ Future:
 * Add contract type check
 
 Done:
+* Automated accessibility check
+* HTML validator on all pages
 * User bower for managing assets (foundation js should not be in js folder)
 * Add more tests for the API
 * API
