@@ -106,6 +106,7 @@ class Parser():
 
     @staticmethod
     def has_jobposting(data):
+
         soup = BeautifulSoup(data, "html5lib")
 
         # Look for any of the 3 types of JobPosting markups
@@ -113,13 +114,22 @@ class Parser():
 
         # Case 1: Microdata
         job_posting_found.append(
-            soup.findAll('div', {'itemtype' : 'http://schema.org/JobPosting'})
+            soup.findAll(attrs={'itemtype' : 'http://schema.org/JobPosting'})
+        )
+        job_posting_found.append(
+            soup.findAll(attrs={'itemtype' : 'https://schema.org/JobPosting'})
         )
 
         # Case 2: RDFa
         job_posting_found.append(
-            soup.findAll('div', {
+            soup.findAll(attrs={
                 'vocab' : 'http://schema.org/',
+                'typeof': 'JobPosting',
+            })
+        )
+        job_posting_found.append(
+            soup.findAll(attrs={
+                'vocab' : 'https://schema.org/',
                 'typeof': 'JobPosting',
             })
         )
