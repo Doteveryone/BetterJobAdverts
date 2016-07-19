@@ -1,2 +1,1 @@
-web: python server.py
-
+web: gunicorn jobcert:app  --log-file -
