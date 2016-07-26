@@ -38,5 +38,10 @@
     "name": "Tesco Careers",
     "url": "http://www.tesco-careers.com",
     "support": "No"
+  },
+  {
+    "name": "Indeed",
+    "url": "http://www.indeed.co.uk",
+    "support": "No"
   }
 ]
