@@ -1,7 +1,7 @@
 import os
 
 class Config(object):
-    DEBUG = False
+    DEBUG = os.environ.get('DEBUG', False)
     SQLALCHEMY_DATABASE_URI = os.environ.get('SQLALCHEMY_DATABASE_URI', None)
     SECRET_KEY = os.environ.get('SECRET_KEY', None)
     BASIC_AUTH_USERNAME = os.environ.get('BASIC_AUTH_USERNAME', None)
