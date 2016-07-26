@@ -29,7 +29,7 @@ ptyprocess==0.5
 PyLD==0.7.1
 python-dateutil==2.5.3
 pytz==2016.4
-requests==2.8.1
+requests==2.10.0
 simplegeneric==0.8.1
 six==1.10.0
 SQLAlchemy==1.0.13

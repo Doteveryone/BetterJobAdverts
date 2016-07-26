@@ -43,7 +43,7 @@ def check():
     if request.method == 'GET':
         url = request.values['url']
         try:
-            html = requests.get(url, verify=False).content
+            html = requests.get(url).content
         except requests.exceptions.ConnectionError:
             error = "Sorry, that URL does not exist"
         except requests.exceptions.MissingSchema:
