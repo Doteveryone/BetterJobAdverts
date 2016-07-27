@@ -26,5 +26,5 @@ python tests.py.py
 
 To run asset pipeline:
 ```
-gulp
+grunt
 ```

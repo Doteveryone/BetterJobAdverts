@@ -28,19 +28,19 @@
           <li class="callout {{parser.get_result('valid-jobposting')['result']|format_status}}">
             <h5>jobPosting standard</h5>
             {% if parser.get_result('valid-jobposting')['result'] == 'yes' %}
-              <div class="stat">Yes</div>
+              <p class="stat">Yes</p>
               <code>{{parser.job_advert.publishing_format}}</code>
               <p>
                 This job advert uses the <a href="http://schema.org/JobPosting">jobPosting standard</a> from schema.org.
             {% elif parser.get_result('valid-jobposting')['result'] == 'incomplete' %}
-              <div class="stat">Incomplete</div>
+              <p class="stat">Incomplete</p>
               <code>{{parser.job_advert.publishing_format}}</code>
               <p>
                 This job advert uses the <a href="http://schema.org/JobPosting">jobPosting standard</a> from schema.org, but is missing either a <code>description</code>, <code>jobLocation</code>, <code>salaryCurrency</code> or <code>employmentType</code> field.
               </p>
               <p>
             {% else %}
-              <div class="stat">No</div>
+              <p class="stat">No</p>
                 {% if parser.job_advert.publishing_format %}
                   <code>{{parser.job_advert.publishing_format}}</code>
                 {% endif %}

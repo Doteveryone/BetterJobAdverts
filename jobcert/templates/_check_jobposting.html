@@ -7,7 +7,7 @@
               <p>
                 This job advert indicates if the position is full-time or part-time. 
             {% else %}
-              <div class="stat">Missing</div>
+              <p class="stat">Missing</p>
               <p>
                 This job advert does not appear to indicate if the position is full-time or part-time.
             {% endif %}
@@ -41,7 +41,7 @@
           <li class="callout {{parser.get_result('salary-clarity')['result']|trafficlight_status}}">
             <h5>Salary information</h5>
             {% if parser.get_result('salary-clarity')['result'] == 'clear' %}     
-              <p class="stat">clear</p>
+              <p class="stat">Clear</p>
               <code>{{parser.job_advert.salary}}</code>
               <p>
                 This job advert has clear information about the salary an applicant can expect.
@@ -51,7 +51,7 @@
               <p>
                 This job advert includes some information about salary, but does not appear to include a clear not a monetary amount or range.
             {% else %}
-              <div class="stat">Missing</div>
+              <p class="stat">Missing</p>
               <p>
                 This job advert does not appear to include any information about the 
                 salary an applicant can expect.
@@ -64,7 +64,7 @@
             <li class="callout {% if parser.get_result('creative-commons-licence')['result'] %}success{% else %}warning{% endif %}">
               <h5>Reuse and licensing</h5>
               {% if parser.get_result('creative-commons-licence')['result'] %}
-                <div class="stat">Clear</div>
+                <p class="stat">Clear</p>
                 <code>
                   {% for licence in parser.job_advert.creative_commons_licences %}
                     licence
@@ -73,7 +73,7 @@
                 <p>
                 This job advert appears to be licensed under a Creative Commons licence.
               {% else %}
-              <div class="stat">Unclear</div>
+              <p class="stat">Unclear</p>
               <p>
                 This job advert does not appear to have a Creative Commons licence associated with it.
               {% endif %}
@@ -85,10 +85,32 @@
           {% if parser.get_result('gender-coded-language')['result'] %}
             <li class="callout {{parser.get_result('gender-coded-language')['result']|gender_coded_status}}">
               <h5>Gender-coded language</h5>
-              <div class="stat">
+              <p class="stat">
                 {{parser.get_result('gender-coded-language')['result']|title}}
-              </div>
-              {{parser.get_result('gender-coded-language')['explanation']}}
+              </p>
+              {% if parser.get_result('gender-coded-language')['data']['masculine_coded_words'] %}
+                <div>
+                  <code>
+                    Masculine coded words: 
+                    {% for word in parser.get_result('gender-coded-language')['data']['masculine_coded_words'] %}
+                    {{word}}{% if not loop.last %}, {% endif %}
+                    {% endfor %}
+                  </code>
+                </div>
+              {% endif %}
+              {% if parser.get_result('gender-coded-language')['data']['feminine_coded_words'] %}
+                <div>
+                  <code>
+                    Feminine coded words: 
+                    {% for word in parser.get_result('gender-coded-language')['data']['feminine_coded_words'] %}
+                    {{word}}{% if not loop.last %}, {% endif %}
+                    {% endfor %}
+                  </code>
+                </div>
+              {% endif %}
+              <p>
+                {{parser.get_result('gender-coded-language')['explanation']}}
+              </p>
             </li>
           {% else %}
             <li class="callout secondary">
@@ -101,7 +123,7 @@
           {% if parser.get_result('flesch-reading-ease')['result'] %}
               <li class="callout {{parser.get_result('flesch-reading-ease')['result']|readability_status}}">
                 <h5>Readability</h5>
-                <div class="stat">{{parser.get_result('flesch-reading-ease')['result']|readability_words}}</div>
+                <p class="stat">{{parser.get_result('flesch-reading-ease')['result']|readability_words}}</p>
                 <code>
                   Flesch–Kincaid score: {{parser.get_result('flesch-reading-ease')['result']}}
                 </code>

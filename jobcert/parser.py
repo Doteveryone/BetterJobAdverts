@@ -301,6 +301,7 @@ class Parser():
             'name': 'valid-jobposting',
             'result': result,
             'explanation': '',
+            'data': {},
           }
         )
 
@@ -312,6 +313,7 @@ class Parser():
             'name': 'flesch-reading-ease',
             'result': self.calculate_flesch_reading_ease(self.job_advert.to_text()),
             'explanation': '',
+            'data': {},
           }
         )
 
@@ -323,6 +325,10 @@ class Parser():
                 'name': 'gender-coded-language',
                 'result': gender_coded_result['result'],
                 'explanation': gender_coded_result['explanation'],
+                'data': {
+                    'masculine_coded_words': gender_coded_result['masculine_coded_words'],
+                    'feminine_coded_words': gender_coded_result['feminine_coded_words']
+                    },
               }
             )
         else:
@@ -331,6 +337,7 @@ class Parser():
                 'name': 'gender-coded-language',
                 'result': None,
                 'explanation': None,
+                'data': {},
               }
             )
 
@@ -341,6 +348,7 @@ class Parser():
             'name': 'creative-commons-licence',
             'result': len(self.job_advert.creative_commons_licences) > 0,
             'explanation': '',
+            'data': {},
           }
         )
 
@@ -352,18 +360,21 @@ class Parser():
                     'name': 'salary-clarity',
                     'result': 'clear',
                     'explanation': '',
+                    'data': {},
                 }
             else:
                 salary_result = {
                     'name': 'salary-clarity',
                     'result': 'unclear',
                     'explanation': '',
+                    'data': {},
                 }
         else:
             salary_result = {
                 'name': 'salary-clarity',
                 'result': 'missing',
                 'explanation': '',
+                'data': {},
             }
 
         self.results.append(salary_result)
@@ -376,6 +387,7 @@ class Parser():
                     'name': 'location-clarity',
                     'result': 'clear',
                     'explanation': '',
+                    'data': {},
                   }
                 )
             else:
@@ -384,6 +396,7 @@ class Parser():
                     'name': 'location-clarity',
                     'result': 'unclear',
                     'explanation': '',
+                    'data': {},
                   }
                 )
         else:
@@ -392,6 +405,7 @@ class Parser():
                 'name': 'location-clarity',
                 'result': 'missing',
                 'explanation': '',
+                'data': {},
               }
             )
 
@@ -402,6 +416,7 @@ class Parser():
             'name': 'has-employment-type',
             'result': self.job_advert.employment_type != None,
             'explanation': '',
+            'data': {},
           }
         )
 
